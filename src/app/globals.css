@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --color-zendel-cyan: #00A2C9;
+  --color-zendel-cyan-light: #09BAF4;
+  --color-zendel-purple: #6747ee;
+  --color-zendel-dark: #0a0504;
+  --color-zendel-card-dark: #14121a;
+  --color-zendel-accent: #ff6900;
+  --color-zendel-soft-bg: #f3f3ff;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  overflow-x: hidden;
+}
+
+/* Custom Utilities for Zendel Theme - Light Mode */
+.bg-gradient-zendel {
+  background: linear-gradient(135deg, #f8fafc 0%, #edf7fc 50%, #f0f4ff 100%);
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #00A2C9 0%, #007799 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #6747ee 0%, #4f32c9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.glass-card-dark {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
