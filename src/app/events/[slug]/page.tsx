@@ -11,6 +11,12 @@ interface EventPageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateStaticParams() {
+  return eventsData.map((event) => ({
+    slug: event.slug,
+  }));
+}
+
 export async function generateMetadata({ params }: EventPageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const event = eventsData.find((e) => e.slug === resolvedParams.slug);
