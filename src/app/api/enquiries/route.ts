@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { ClientEnquiry } from '@/lib/types/artisan';
 
 const filePath = path.join(process.cwd(), 'src/lib/data/enquiries.json');
 
 // Helper to read data
-function readData() {
+function readData(): ClientEnquiry[] {
   try {
     if (!fs.existsSync(filePath)) {
       return [];
@@ -19,7 +20,7 @@ function readData() {
 }
 
 // Helper to write data
-function writeData(data: any) {
+function writeData(data: ClientEnquiry[]) {
   try {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
   } catch (error) {
@@ -37,15 +38,19 @@ export async function POST(request: Request) {
     const body = await request.json();
     const data = readData();
 
-    const newEnquiry = {
+    const newEnquiry: ClientEnquiry = {
       id: Date.now().toString(),
-      artisanName: body.artisanName || 'General',
-      artisanRole: body.artisanRole || 'General Creative',
+      artisanName: body.artisanName || 'General Artisan Booking',
+      artisanRole: body.artisanRole || 'Zendel Creatives Collective',
       name: body.name || '',
       email: body.email || '',
       phone: body.phone || '',
-      eventDate: body.eventDate || '',
+      country: body.country || 'United Kingdom',
+      city: body.city || 'London',
+      eventType: body.eventType || 'Luxury Celebration',
       locationPostcode: body.locationPostcode || '',
+      eventDate: body.eventDate || '',
+      numberOfArtisans: body.numberOfArtisans || '1',
       additionalInfo: body.additionalInfo || '',
       createdAt: new Date().toISOString(),
     };
@@ -53,7 +58,7 @@ export async function POST(request: Request) {
     data.unshift(newEnquiry); // Prepend so new enquiries show first
     writeData(data);
 
-    return NextResponse.json(newEnquiry);
+    return NextResponse.json(newEnquiry, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to save enquiry' }, { status: 500 });
   }
@@ -64,19 +69,14 @@ export async function PUT(request: Request) {
     const body = await request.json();
     const data = readData();
 
-    const index = data.findIndex((item: any) => item.id === body.id);
+    const index = data.findIndex((item) => item.id === body.id);
     if (index === -1) {
       return NextResponse.json({ error: 'Enquiry not found' }, { status: 404 });
     }
 
     data[index] = {
       ...data[index],
-      name: body.name !== undefined ? body.name : data[index].name,
-      email: body.email !== undefined ? body.email : data[index].email,
-      phone: body.phone !== undefined ? body.phone : data[index].phone,
-      eventDate: body.eventDate !== undefined ? body.eventDate : data[index].eventDate,
-      locationPostcode: body.locationPostcode !== undefined ? body.locationPostcode : data[index].locationPostcode,
-      additionalInfo: body.additionalInfo !== undefined ? body.additionalInfo : data[index].additionalInfo,
+      ...body,
     };
 
     writeData(data);
@@ -96,7 +96,7 @@ export async function DELETE(request: Request) {
     }
 
     const data = readData();
-    const filtered = data.filter((item: any) => item.id !== id);
+    const filtered = data.filter((item) => item.id !== id);
     
     writeData(filtered);
     return NextResponse.json({ success: true });

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, Loader2, Sparkles, MapPin, Calendar, Users, Phone, Mail, Globe } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 interface ArtisanEnquiryFormProps {
@@ -11,16 +11,20 @@ interface ArtisanEnquiryFormProps {
 }
 
 export const ArtisanEnquiryForm: React.FC<ArtisanEnquiryFormProps> = ({
-  artisanName = 'General',
-  artisanRole = 'General Creative',
+  artisanName = 'Zendel Creatives Individual',
+  artisanRole = 'Premier Artisan',
   onSuccess,
 }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    country: 'United Kingdom',
+    city: 'London',
+    eventType: 'Wedding Gala',
     eventDate: '',
     locationPostcode: '',
+    numberOfArtisans: '1',
     additionalInfo: '',
   });
 
@@ -32,9 +36,8 @@ export const ArtisanEnquiryForm: React.FC<ArtisanEnquiryFormProps> = ({
     e.preventDefault();
     setErrorMessage('');
 
-    // Validation
     if (!formData.name || !formData.email || !formData.phone || !formData.eventDate || !formData.locationPostcode) {
-      setErrorMessage('Please fill out all required fields marked with *');
+      setErrorMessage('Please complete all required fields marked with *');
       return;
     }
 
@@ -60,79 +63,82 @@ export const ArtisanEnquiryForm: React.FC<ArtisanEnquiryFormProps> = ({
       setLoading(false);
       setSubmitted(true);
       if (onSuccess) {
-        // Wait a second before closing the modal
-        setTimeout(onSuccess, 1500);
+        setTimeout(onSuccess, 1800);
       }
     } catch {
       setLoading(false);
-      setErrorMessage('An unexpected error occurred. Please try again or call us directly.');
+      setErrorMessage('An unexpected error occurred. Please try again or reach out to our concierge.');
     }
   };
 
   if (submitted) {
     return (
-      <div className="p-8 text-center bg-white text-gray-900">
-        <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+      <div className="p-8 text-center bg-white text-gray-950">
+        <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-inner">
           <CheckCircle2 className="w-10 h-10" />
         </div>
-        <h3 className="text-2xl font-black mb-2">Enquiry Submitted!</h3>
-        <p className="text-sm text-gray-600 max-w-md mx-auto">
-          We have received your details for <strong>{artisanName} ({artisanRole})</strong>. Our team will review and contact you within 24 hours.
+        <h3 className="text-2xl font-black text-gray-950 mb-2">Hiring Enquiry Sent!</h3>
+        <p className="text-sm text-gray-600 max-w-md mx-auto leading-relaxed">
+          Your request to hire <strong>{artisanName}</strong> for your upcoming <strong>{formData.eventType}</strong> has been transmitted directly to our operations and admin directorate. We will contact you within 24 hours.
         </p>
       </div>
     );
   }
 
-  const inputClasses = "w-full px-4 py-3 text-sm rounded-xl border border-gray-300 bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00A2C9] focus:border-transparent transition-all";
-  const labelClasses = "block text-xs font-bold uppercase tracking-wider mb-2 text-gray-700";
+  const inputClasses = "w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-gray-300 bg-slate-50 text-gray-950 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00A2C9] focus:bg-white transition-all";
+  const labelClasses = "block text-[11px] font-black uppercase tracking-wider mb-1.5 text-gray-700";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 bg-white text-gray-900">
-      <div className="border-b border-gray-100 pb-4 mb-2">
-        <h3 className="text-xl font-black text-gray-900">
-          Connect with {artisanName}
-        </h3>
-        <p className="text-xs text-gray-500 mt-1 uppercase tracking-wider font-semibold">
-          {artisanRole}
-        </p>
+    <form onSubmit={handleSubmit} className="space-y-4 bg-white text-gray-950 max-h-[80vh] overflow-y-auto pr-1">
+      {/* Selected Artisan Header Pill */}
+      <div className="p-4 rounded-2xl bg-slate-900 text-white flex items-center justify-between border border-slate-800 shadow-md">
+        <div>
+          <span className="text-[10px] font-black uppercase tracking-widest text-[#09BAF4] block">
+            Requested Artisan
+          </span>
+          <h4 className="text-base font-black text-white">{artisanName}</h4>
+          <p className="text-xs text-slate-300">{artisanRole}</p>
+        </div>
+        <div className="w-10 h-10 rounded-xl bg-[#00A2C9]/20 text-[#09BAF4] flex items-center justify-center border border-[#00A2C9]/30">
+          <Sparkles className="w-5 h-5" />
+        </div>
       </div>
 
       {errorMessage && (
-        <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 text-sm flex items-center">
-          <AlertCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+        <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 text-xs font-bold flex items-center">
+          <AlertCircle className="w-4 h-4 mr-2 flex-shrink-0" />
           <span>{errorMessage}</span>
         </div>
       )}
 
-      <div className="space-y-4">
-        {/* Full Name */}
+      {/* Client Identity */}
+      <div className="space-y-3 pt-1">
         <div>
           <label className={labelClasses}>Your Full Name *</label>
           <input
             type="text"
             required
-            placeholder="John Doe"
+            placeholder="e.g. Victoria Sterling"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className={inputClasses}
           />
         </div>
 
-        {/* Email & Phone */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label className={labelClasses}>Email Address *</label>
             <input
               type="email"
               required
-              placeholder="john@example.com"
+              placeholder="name@example.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className={inputClasses}
             />
           </div>
           <div>
-            <label className={labelClasses}>Phone Number *</label>
+            <label className={labelClasses}>Phone Number (with Country Code) *</label>
             <input
               type="tel"
               required
@@ -144,8 +150,70 @@ export const ArtisanEnquiryForm: React.FC<ArtisanEnquiryFormProps> = ({
           </div>
         </div>
 
-        {/* Event Date & Location */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Country & City */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label className={labelClasses}>Country *</label>
+            <input
+              type="text"
+              required
+              placeholder="e.g. United Kingdom"
+              value={formData.country}
+              onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+              className={inputClasses}
+            />
+          </div>
+          <div>
+            <label className={labelClasses}>City *</label>
+            <input
+              type="text"
+              required
+              placeholder="e.g. London"
+              value={formData.city}
+              onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+              className={inputClasses}
+            />
+          </div>
+        </div>
+
+        {/* Event Type & Number of Artisans */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label className={labelClasses}>Type of Event *</label>
+            <select
+              value={formData.eventType}
+              onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
+              className={inputClasses}
+            >
+              <option value="Wedding Gala">Wedding Gala</option>
+              <option value="Corporate Summit / Conference">Corporate Summit / Conference</option>
+              <option value="Private Dinner / Banquet">Private Dinner / Banquet</option>
+              <option value="Fashion Show / Editorial Launch">Fashion Show / Editorial Launch</option>
+              <option value="Concert / Entertainment Show">Concert / Entertainment Show</option>
+              <option value="Birthday Celebration">Birthday Celebration</option>
+              <option value="Funeral Reception">Funeral Reception</option>
+              <option value="Commercial Production / Brand Shoot">Commercial Production / Brand Shoot</option>
+              <option value="Other Bespoke Event">Other Bespoke Event</option>
+            </select>
+          </div>
+          <div>
+            <label className={labelClasses}>Number of Artisans Needed *</label>
+            <select
+              value={formData.numberOfArtisans}
+              onChange={(e) => setFormData({ ...formData, numberOfArtisans: e.target.value })}
+              className={inputClasses}
+            >
+              <option value="1">1 Artisan (Lead Specialist)</option>
+              <option value="2-3">2 - 3 Artisans</option>
+              <option value="4-6">4 - 6 Artisans</option>
+              <option value="7-10">7 - 10 Artisans</option>
+              <option value="10+">Full Production Team (10+)</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Event Date & Location Venue/Postcode */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label className={labelClasses}>Event Date *</label>
             <input
@@ -157,11 +225,11 @@ export const ArtisanEnquiryForm: React.FC<ArtisanEnquiryFormProps> = ({
             />
           </div>
           <div>
-            <label className={labelClasses}>Postcode of Location *</label>
+            <label className={labelClasses}>Event Venue / Postcode *</label>
             <input
               type="text"
               required
-              placeholder="e.g. EC1A 1BB"
+              placeholder="e.g. Mayfair, London (W1K 7AA)"
               value={formData.locationPostcode}
               onChange={(e) => setFormData({ ...formData, locationPostcode: e.target.value })}
               className={inputClasses}
@@ -169,12 +237,12 @@ export const ArtisanEnquiryForm: React.FC<ArtisanEnquiryFormProps> = ({
           </div>
         </div>
 
-        {/* Additional Information */}
+        {/* Specific Task & Requirements */}
         <div>
-          <label className={labelClasses}>Additional Information / Requirements</label>
+          <label className={labelClasses}>Particular Task / Requirements / Theme</label>
           <textarea
-            rows={4}
-            placeholder="Tell us more about your event theme, schedule, or specific preferences..."
+            rows={3}
+            placeholder="Describe the task, specific expectations, dress code, timeline, or requirements for this artisan..."
             value={formData.additionalInfo}
             onChange={(e) => setFormData({ ...formData, additionalInfo: e.target.value })}
             className={inputClasses}
@@ -190,7 +258,7 @@ export const ArtisanEnquiryForm: React.FC<ArtisanEnquiryFormProps> = ({
             disabled={loading}
             icon={loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
           >
-            {loading ? 'Submitting Enquiry...' : 'Submit Booking Enquiry'}
+            {loading ? 'Submitting Hiring Request...' : 'Send Hire & Booking Enquiry'}
           </Button>
         </div>
       </div>

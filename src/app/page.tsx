@@ -6,6 +6,7 @@ import { UpcomingEventSection } from "@/components/sections/UpcomingEventSection
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { EventGallerySection } from "@/components/sections/EventGallerySection";
 import { FounderSection } from "@/components/sections/FounderSection";
+import { FeaturedArtisansSection } from "@/components/sections/FeaturedArtisansSection";
 import { ContactCTASection } from "@/components/sections/ContactCTASection";
 import { BlogPreviewSection } from "@/components/sections/BlogPreviewSection";
 
@@ -16,6 +17,7 @@ export default function HomePage() {
       <WhyChooseUsSection />
       <MissionVisionSection />
       <UpcomingEventSection />
+      <FeaturedArtisansSection />
       <TestimonialsSection />
       <EventGallerySection />
       <FounderSection />

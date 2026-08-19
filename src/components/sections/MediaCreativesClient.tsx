@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Sparkles,
@@ -14,7 +14,7 @@ import {
   ShieldCheck,
   Megaphone,
   Compass,
-  CheckCircle,
+  CheckCircle2,
   ArrowRight,
   HeartHandshake,
   Award,
@@ -23,12 +23,17 @@ import {
   BookOpen,
   UserCircle2,
   Mail,
+  ExternalLink,
+  MapPin,
+  Globe,
 } from 'lucide-react';
 import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import { ArtisanEnquiryForm } from '@/components/forms/ArtisanEnquiryForm';
+import { ArtisanRegistrationForm } from '@/components/forms/ArtisanRegistrationForm';
 import { StyledUnderline } from '@/components/ui/StyledUnderline';
+import { Artisan } from '@/lib/types/artisan';
 
 /* ─────────────────────────────────────────────
    DATA (Using Authentic Local Gallery Images)
@@ -42,7 +47,7 @@ const teamDepartments = [
     description:
       'Our event planners and creative directors transform ideas, aspirations, and individual stories into beautifully considered celebrations. From the first concept to the final detail, they bring structure, creativity, precision, and imagination together to create experiences that feel effortless and extraordinary.',
     icon: Compass,
-    image: '/gallery/IMG-20260602-WA0009.jpg',
+    image: '/artisan-event-planner.jpg',
     accentBg: 'bg-[#00A2C9]/10',
     accentText: 'text-[#00A2C9]',
     accentBorder: 'border-[#00A2C9]',
@@ -56,7 +61,7 @@ const teamDepartments = [
     description:
       'From refined beauty and bespoke fashion to couture styling and immersive décor, our creative specialists ensure that every element feels intentional, harmonious, and unmistakably personal.',
     icon: Sparkles,
-    image: '/gallery/IMG-20260602-WA0024.jpg',
+    image: '/collective-makeup.jpg',
     accentBg: 'bg-[#6747ee]/10',
     accentText: 'text-[#6747ee]',
     accentBorder: 'border-[#6747ee]',
@@ -70,7 +75,7 @@ const teamDepartments = [
     description:
       'Our photographers, filmmakers, and media creatives capture the emotion, atmosphere, beauty, and details that make every occasion unique—transforming fleeting moments into visual stories that can be remembered for years to come.',
     icon: Camera,
-    image: '/gallery/IMG-20260602-WA0029.jpg',
+    image: '/collective-photographer.jpg',
     accentBg: 'bg-[#ff6900]/10',
     accentText: 'text-[#ff6900]',
     accentBorder: 'border-[#ff6900]',
@@ -98,7 +103,7 @@ const teamDepartments = [
     description:
       'Behind a seamless experience is a team dedicated to comfort, coordination, discretion, and safety. Our ushers, concierge professionals, and security specialists ensure every guest is welcomed, supported, and protected throughout the occasion.',
     icon: ShieldCheck,
-    image: '/gallery/IMG-20260602-WA0010.jpg',
+    image: '/collective-ushers.jpg',
     accentBg: 'bg-sky-500/10',
     accentText: 'text-sky-600',
     accentBorder: 'border-sky-600',
@@ -112,7 +117,7 @@ const collectiveCategories = [
     description:
       'Visionary planners and creative directors who transform concepts into flawlessly executed experiences.',
     icon: Compass,
-    image: '/gallery/IMG-20260602-WA0009.jpg',
+    image: '/artisan-event-planner.jpg',
   },
   {
     title: 'Makeup Artistry',
@@ -147,7 +152,7 @@ const collectiveCategories = [
     description:
       "Creative designers transforming venues into immersive environments where every detail reflects the occasion's unique story.",
     icon: Sparkles,
-    image: '/gallery/IMG-20260602-WA0011.jpg',
+    image: '/gallery/IMG-20260602-WA0009.jpg',
   },
   {
     title: 'Luxury Catering & Culinary Experiences',
@@ -189,7 +194,7 @@ const collectiveCategories = [
     description:
       'Creative media professionals capturing, promoting, and amplifying exceptional moments through strategic storytelling.',
     icon: Megaphone,
-    image: '/gallery/IMG-20260602-WA0049.jpg',
+    image: '/gallery/IMG-20260602-WA0014.jpg',
   },
 ];
 
@@ -201,7 +206,7 @@ const artisanProfileFields = [
   { icon: Award, label: 'Experience & Credentials', desc: 'Qualifications, awards & notable collaborations' },
   { icon: Camera, label: 'Portfolio', desc: 'Selected work and visual highlights' },
   { icon: Briefcase, label: 'Zendel Creatives Role', desc: 'How they contribute to the collective' },
-  { icon: Mail, label: 'Connect / Enquire', desc: 'Direct contact and booking' },
+  { icon: Mail, label: 'Connect / Enquire →', desc: 'Direct contact and client booking' },
 ];
 
 const philosophyPillars = [
@@ -212,35 +217,50 @@ const philosophyPillars = [
   'Every experience tells a story.',
 ];
 
-const teaseCards = [
-  {
-    dept: 'Creative Vision',
-    role: 'Lead Event Planner & Creative Director',
-    accentHex: '#00A2C9',
-    img: '/artisan-event-planner.jpg',
-  },
-  {
-    dept: 'Beauty & Presentation',
-    role: 'Senior Makeup Artist & Beauty Specialist',
-    accentHex: '#6747ee',
-    img: '/artisan-makeup-artist.jpg',
-  },
-  {
-    dept: 'Memories & Storytelling',
-    role: 'Lead Photographer & Visual Storyteller',
-    accentHex: '#ff6900',
-    img: '/artisan-photographer.jpg',
-  },
-];
-
 export const MediaCreativesClient: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [registerModalOpen, setRegisterModalOpen] = useState(false);
   const [selectedArtisan, setSelectedArtisan] = useState({ name: '', role: '' });
+
+  // Artisans Roster from API
+  const [artisans, setArtisans] = useState<Artisan[]>([]);
+  const [loadingArtisans, setLoadingArtisans] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+
+  useEffect(() => {
+    async function loadArtisans() {
+      try {
+        const res = await fetch('/api/artisans');
+        if (res.ok) {
+          const data = await res.json();
+          setArtisans(data);
+        }
+      } catch (err) {
+        console.error('Error fetching artisans for media creatives page:', err);
+      } finally {
+        setLoadingArtisans(false);
+      }
+    }
+    loadArtisans();
+  }, []);
 
   const handleOpenModal = (name: string, role: string) => {
     setSelectedArtisan({ name, role });
     setModalOpen(true);
   };
+
+  const categoriesList = [
+    'All',
+    'Creative Vision',
+    'Beauty & Presentation',
+    'Memories & Storytelling',
+    'Hospitality & Atmosphere',
+    'Guest Care & Protection',
+  ];
+
+  const filteredArtisans = selectedCategory === 'All'
+    ? artisans
+    : artisans.filter((a) => a.category === selectedCategory);
 
   return (
     <>
@@ -270,19 +290,23 @@ export const MediaCreativesClient: React.FC = () => {
               <p className="text-base sm:text-xl text-[#09BAF4] font-bold italic">
                 Where artistry meets elegance. Where every detail becomes a masterpiece.
               </p>
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
                 Behind every extraordinary Zendel Creatives experience is a carefully selected
                 team of exceptional individuals — the planners, beauty specialists, designers,
                 storytellers, hospitality professionals, and guest-experience specialists who
                 bring every celebration to life.
               </p>
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
-                <Button href="#the-team" variant="primary" size="lg" icon={<ArrowRight className="w-5 h-5" />}>
-                  Meet the Team
+                <Button href="#the-artisans" variant="primary" size="lg" icon={<ArrowRight className="w-5 h-5" />}>
+                  Meet the Artisans
                 </Button>
-                <Button href="/contact?subject=Join+The+Collective" variant="dark" size="lg">
-                  Join the Collective
-                </Button>
+                <button
+                  onClick={() => setRegisterModalOpen(true)}
+                  className="px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-black text-sm border border-white/20 backdrop-blur-md transition-all shadow-lg flex items-center space-x-2"
+                >
+                  <Sparkles className="w-4 h-4 text-[#09BAF4]" />
+                  <span>Register as an Artisan</span>
+                </button>
               </div>
             </div>
 
@@ -333,14 +357,216 @@ export const MediaCreativesClient: React.FC = () => {
         </Container>
       </section>
 
-      {/* ── TEAM DEPARTMENTS ──────────────────────── */}
+      {/* ── MEET THE INDIVIDUALS (DYNAMIC ARTISANS PROFILES) ──────────────────── */}
+      <section id="the-artisans" className="py-24 bg-slate-50 border-b border-gray-200">
+        <Container>
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span className="text-xs font-black uppercase text-[#6747ee] tracking-widest px-4 py-1.5 rounded-full bg-[#6747ee]/10 border border-[#6747ee]/20 inline-block">
+              MEET THE INDIVIDUALS
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-black text-gray-950 tracking-tight">
+              The Artisans Behind the{' '}
+              <span className="relative inline-block text-[#00A2C9]">
+                Experience
+                <StyledUnderline color="#00A2C9" variant="curve" />
+              </span>
+            </h2>
+            <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+              Every profile within The Zendel Creatives Team represents a distinctive talent, perspective, and contribution to the collective. Hire individuals directly for your specific event task.
+            </p>
+
+            {/* Category Filter Pills */}
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-6">
+              {categoriesList.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2 rounded-full text-xs font-black transition-all ${
+                    selectedCategory === cat
+                      ? 'bg-[#00A2C9] text-white shadow-md'
+                      : 'bg-white text-gray-700 border border-gray-200 hover:bg-slate-100'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Full Artisan Profiles Showcase (8-Field Cards) */}
+          <div className="space-y-12">
+            {loadingArtisans ? (
+              <div className="p-16 text-center text-gray-400 font-bold">Loading artisan profiles...</div>
+            ) : filteredArtisans.length === 0 ? (
+              <div className="p-16 text-center text-gray-500 bg-white rounded-3xl border border-gray-200 italic">
+                No verified artisans found in this category yet.
+              </div>
+            ) : (
+              filteredArtisans.map((artisan, index) => (
+                <div
+                  key={artisan.id || index}
+                  className="rounded-3xl bg-white border border-slate-200/90 shadow-xl overflow-hidden group hover:border-[#00A2C9] transition-all duration-300"
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-12">
+                    {/* Left Column: Photo & Direct Booking CTA */}
+                    <div className="lg:col-span-4 bg-slate-950 text-white relative flex flex-col justify-between p-8">
+                      <div className="space-y-6">
+                        <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-slate-900">
+                          <img
+                            src={artisan.image || '/artisan-event-planner.jpg'}
+                            alt={artisan.name}
+                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute top-3 left-3 bg-white/90 text-gray-950 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-md">
+                            {artisan.category}
+                          </div>
+                          <div className="absolute top-3 right-3 bg-emerald-500 text-white px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider flex items-center space-x-1 shadow-md">
+                            <ShieldCheck className="w-3 h-3" />
+                            <span>VERIFIED</span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <h3 className="text-2xl font-black text-white">{artisan.name}</h3>
+                          <p className="text-sm font-bold text-[#09BAF4] mt-1">{artisan.title}</p>
+                          <div className="flex items-center space-x-2 text-xs text-slate-300 mt-2 font-medium">
+                            <MapPin className="w-3.5 h-3.5 text-[#00A2C9]" />
+                            <span>{artisan.city}, {artisan.country}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Connect / Enquire CTA Button */}
+                      <div className="pt-6 border-t border-white/10 space-y-3">
+                        <button
+                          onClick={() => handleOpenModal(artisan.name, artisan.title)}
+                          className="w-full py-3.5 px-5 rounded-2xl bg-[#ff6900] hover:bg-[#e05d00] text-white font-black text-xs uppercase tracking-wider shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2"
+                        >
+                          <Mail className="w-4 h-4" />
+                          <span>Connect / Enquire →</span>
+                        </button>
+                        {artisan.portfolio && (
+                          <a
+                            href={artisan.portfolio}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="w-full py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center justify-center space-x-1.5 transition-colors"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            <span>View Portfolio</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Right Column: Complete 8-Field Showcase */}
+                    <div className="lg:col-span-8 p-8 sm:p-10 space-y-6 flex flex-col justify-between">
+                      <div className="space-y-5">
+                        {/* 1. About */}
+                        <div className="space-y-1">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-[#00A2C9] block">
+                            *About* (Creative Identity &amp; Approach)
+                          </span>
+                          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-normal">
+                            {artisan.about}
+                          </p>
+                        </div>
+
+                        {/* 2. Expertise & 3. Signature Style (2-Col Grid) */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
+                              *Expertise* (Key Services &amp; Skills)
+                            </span>
+                            <p className="text-xs sm:text-sm font-bold text-gray-900 leading-snug">
+                              {artisan.expertise}
+                            </p>
+                          </div>
+
+                          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
+                              *Signature Style*
+                            </span>
+                            <p className="text-xs sm:text-sm font-bold text-gray-900 leading-snug">
+                              {artisan.signatureStyle || 'Bespoke tailoring, meticulous precision, and unforgettable aesthetics.'}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* 4. Experience & Credentials */}
+                        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
+                            *Experience &amp; Credentials*
+                          </span>
+                          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium">
+                            {artisan.experienceCredentials || 'Verified experience with premier European and international galas.'}
+                          </p>
+                        </div>
+
+                        {/* 5. Zendel Creatives Role */}
+                        <div className="p-4 rounded-2xl bg-cyan-50/50 border border-cyan-100 space-y-1">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-[#00A2C9] block">
+                            *Zendel Creatives Role*
+                          </span>
+                          <p className="text-xs sm:text-sm text-gray-800 leading-relaxed font-semibold">
+                            {artisan.zendelRole || 'Contributes specialist craft, high luxury standards, and seamless on-site excellence.'}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Footer Hire CTA Line */}
+                      <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-gray-500">
+                        <div className="flex items-center space-x-2">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                          <span>Direct hiring &amp; customized task coordination via Zendel concierge</span>
+                        </div>
+                        <button
+                          onClick={() => handleOpenModal(artisan.name, artisan.title)}
+                          className="font-black text-[#00A2C9] hover:underline underline-offset-4 flex items-center space-x-1 self-start sm:self-auto"
+                        >
+                          <span>Enquire to hire this artisan</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          {/* Join Directory CTA Banner */}
+          <div className="mt-16 bg-white rounded-3xl border border-gray-200 shadow-md p-8 sm:p-12 text-center max-w-4xl mx-auto space-y-5">
+            <div className="w-12 h-12 rounded-2xl bg-[#6747ee]/10 text-[#6747ee] flex items-center justify-center mx-auto shadow-inner">
+              <Sparkles className="w-6 h-6" />
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-black text-gray-950">
+              Are you an Exceptional Creative Artisan?
+            </h3>
+            <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              We are constantly welcoming elite event planners, makeup artists, photographers, mixologists, and hospitality talent into the Zendel collective. Register your profile to be verified by our executive directorate.
+            </p>
+            <div className="pt-2">
+              <button
+                onClick={() => setRegisterModalOpen(true)}
+                className="px-6 py-3.5 rounded-2xl bg-[#6747ee] hover:bg-[#5839db] text-white font-black text-sm shadow-md transition-all inline-flex items-center space-x-2"
+              >
+                <Sparkles className="w-4 h-4" />
+                <span>Register as an Artisan</span>
+              </button>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── TEAM DEPARTMENTS (5 PILLARS) ──────────────────────── */}
       <section id="the-team" className="py-24 bg-white border-b border-gray-200">
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-bold uppercase text-[#ff6900] tracking-widest px-3.5 py-1 rounded-full bg-[#ff6900]/10 border border-[#ff6900]/20 inline-block">
-              Directory &amp; Roster
+            <span className="text-xs font-black uppercase text-[#ff6900] tracking-widest px-4 py-1.5 rounded-full bg-[#ff6900]/10 border border-[#ff6900]/20 inline-block">
+              5 Pillars of Excellence
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900">
+            <h2 className="text-3xl sm:text-5xl font-black text-gray-950 tracking-tight">
               The Zendel Creatives Team
             </h2>
             <p className="text-sm sm:text-base text-gray-500 italic">
@@ -367,7 +593,7 @@ export const MediaCreativesClient: React.FC = () => {
                       <img
                         src={dept.image}
                         alt={dept.category}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-black/20" />
                       <div className="absolute bottom-5 left-5">
@@ -386,17 +612,17 @@ export const MediaCreativesClient: React.FC = () => {
                       }`}
                     >
                       <div>
-                        <span className={`text-xs uppercase tracking-widest font-extrabold ${dept.accentText} block mb-2`}>
+                        <span className={`text-xs uppercase tracking-widest font-black ${dept.accentText} block mb-2`}>
                           {dept.disciplines}
                         </span>
-                        <h3 className="text-2xl sm:text-3xl font-black text-gray-900">
+                        <h3 className="text-2xl sm:text-3xl font-black text-gray-950">
                           {dept.category}
                         </h3>
-                        <p className={`text-base font-semibold italic ${dept.accentText} mt-1`}>
+                        <p className={`text-base font-bold italic ${dept.accentText} mt-1`}>
                           {dept.tagline}
                         </p>
                       </div>
-                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
                         {dept.description}
                       </p>
                     </div>
@@ -408,136 +634,17 @@ export const MediaCreativesClient: React.FC = () => {
         </Container>
       </section>
 
-      {/* ── MEET THE INDIVIDUALS ──────────────────── */}
+      {/* ── THE COLLECTIVE (12 DISCIPLINES) ──────── */}
       <section className="py-24 bg-slate-50 border-b border-gray-200">
         <Container>
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-bold uppercase text-[#6747ee] tracking-widest px-3.5 py-1 rounded-full bg-[#6747ee]/10 border border-[#6747ee]/20 inline-block">
-              Individual Profiles
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900">
-              Meet the Individuals
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-              The artisans behind the experience. Each profile celebrates not only what our
-              creatives do, but{' '}
-              <strong>
-                who they are, what they create, and the standard of excellence they bring to
-                every experience.
-              </strong>
-            </p>
-          </div>
-
-          {/* Profile card anatomy */}
-          <div className="bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden mb-12">
-            <div className="p-6 sm:p-8 border-b border-gray-100 bg-slate-100">
-              <p className="text-xs uppercase font-extrabold text-[#00A2C9] tracking-widest mb-1">
-                Every Artisan Profile Includes
-              </p>
-              <h3 className="text-xl sm:text-2xl font-black text-gray-900">
-                A Complete Showcase of Their Craft
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 divide-x-0 sm:divide-x divide-gray-100">
-              {artisanProfileFields.map((field, idx) => {
-                const FieldIcon = field.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="p-6 flex flex-col items-start space-y-2 hover:bg-slate-50 transition-colors"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-[#00A2C9]/10 flex items-center justify-center mb-1">
-                      <FieldIcon className="w-5 h-5 text-[#00A2C9]" />
-                    </div>
-                    <p className="text-sm font-black text-gray-900">{field.label}</p>
-                    <p className="text-xs text-gray-500 leading-snug">{field.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Teaser artisan cards with real/AI photos */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-            {teaseCards.map((card, i) => (
-              <div
-                key={i}
-                className="rounded-3xl bg-white border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="relative h-56 overflow-hidden bg-slate-900">
-                    <img
-                      src={card.img}
-                      alt={card.role}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/20" />
-                    <div className="absolute bottom-4 left-4">
-                      <span
-                        className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-white/90 shadow-md animate-in fade-in"
-                        style={{
-                          color: card.accentHex,
-                        }}
-                      >
-                        {card.dept}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <div>
-                      <p className="text-base font-black text-gray-900 leading-snug">{card.role}</p>
-                      <p className="text-xs text-gray-400 mt-1 italic">Profile coming soon</p>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="h-px flex-1 bg-gray-100" />
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
-                        Zendel Creatives
-                      </span>
-                      <div className="h-px flex-1 bg-gray-100" />
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6 pt-0">
-                  <button
-                    onClick={() => handleOpenModal(card.dept, card.role)}
-                    className="inline-flex items-center space-x-2 text-xs font-bold hover:underline underline-offset-4 transition-all"
-                    style={{ color: card.accentHex }}
-                  >
-                    <Mail className="w-3.5 h-3.5" />
-                    <span>Connect / Enquire →</span>
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <p className="text-sm text-gray-500 mb-6 italic">
-              Full artisan profiles are being curated and will be published shortly.
-            </p>
-            <Button
-              onClick={() => handleOpenModal('General Artisan', 'Zendel Creatives Collective')}
-              variant="outline"
-              size="md"
-              icon={<ArrowRight className="w-4 h-4" />}
-            >
-              Enquire About the Full Directory
-            </Button>
-          </div>
-        </Container>
-      </section>
-
-      {/* ── THE COLLECTIVE (12 DISCIPLINES) ──────── */}
-      <section className="py-24 bg-white border-b border-gray-200">
-        <Container>
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-bold uppercase text-[#00A2C9] tracking-widest">
+            <span className="text-xs font-black uppercase text-[#00A2C9] tracking-widest px-4 py-1.5 rounded-full bg-[#00A2C9]/10 border border-[#00A2C9]/20 inline-block">
               The Collective
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+            <h2 className="text-3xl sm:text-5xl font-black text-gray-950 tracking-tight">
               A Network of Premier Creative Excellence
             </h2>
-            <p className="text-sm sm:text-base text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed">
               Zendel Creatives brings together a carefully selected community of exceptional
               artisans and specialists, each contributing their expertise to create seamless,
               immersive, and unforgettable luxury experiences.
@@ -550,23 +657,23 @@ export const MediaCreativesClient: React.FC = () => {
               return (
                 <div
                   key={index}
-                  className="rounded-3xl bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col group"
+                  className="rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group hover:-translate-y-1"
                 >
                   <div className="relative h-48 overflow-hidden bg-slate-900">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-white text-[#00A2C9] flex items-center justify-center shadow-lg">
                       <IconComp className="w-5 h-5" />
                     </div>
                   </div>
                   <div className="p-6 flex-1 flex flex-col justify-between space-y-3">
-                    <h3 className="text-base font-bold text-gray-900 group-hover:text-[#00A2C9] transition-colors leading-snug">
+                    <h3 className="text-base font-black text-gray-950 group-hover:text-[#00A2C9] transition-colors leading-snug">
                       {item.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal">
                       {item.description}
                     </p>
                   </div>
@@ -578,18 +685,18 @@ export const MediaCreativesClient: React.FC = () => {
       </section>
 
       {/* ── JOIN THE COLLECTIVE ───────────────────── */}
-      <section className="py-24 bg-slate-900 text-white border-b border-slate-800 relative overflow-hidden">
+      <section className="py-24 bg-slate-950 text-white border-b border-white/10 relative overflow-hidden">
         <Container className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#00A2C9]/20 border border-[#00A2C9]/40 text-[#09BAF4] text-xs font-bold uppercase tracking-widest">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#00A2C9]/20 border border-[#00A2C9]/40 text-[#09BAF4] text-xs font-black uppercase tracking-widest">
             <HeartHandshake className="w-4 h-4" />
             <span>For Our Artisans</span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
             Join an Exclusive <span className="text-[#09BAF4]">Creative Community</span>
           </h2>
 
-          <p className="text-base sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal">
             Zendel Creatives is built for exceptional talent that values quality,
             professionalism, creativity, and innovation. By becoming part of our collective,
             you gain the opportunity to collaborate with like-minded creatives, participate in
@@ -597,7 +704,7 @@ export const MediaCreativesClient: React.FC = () => {
             that represent the highest standards of luxury.
           </p>
 
-          <p className="text-xl font-bold text-[#09BAF4] italic">
+          <p className="text-xl font-black text-[#09BAF4] italic">
             You are not simply providing a service.{' '}
             <span className="text-white">You are helping shape a movement.</span>
           </p>
@@ -625,134 +732,49 @@ export const MediaCreativesClient: React.FC = () => {
               return (
                 <div
                   key={i}
-                  className="rounded-2xl bg-slate-800 border border-slate-700 p-6 space-y-3 hover:border-[#00A2C9] transition-colors"
+                  className="rounded-2xl bg-slate-900 border border-white/10 p-6 space-y-3 hover:border-[#00A2C9] transition-colors"
                 >
                   <div className="w-10 h-10 rounded-xl bg-[#00A2C9]/20 flex items-center justify-center">
                     <PIcon className="w-5 h-5 text-[#09BAF4]" />
                   </div>
                   <p className="text-base font-black text-white">{p.title}</p>
-                  <p className="text-sm text-slate-300 leading-relaxed">{p.desc}</p>
+                  <p className="text-sm text-slate-300 leading-relaxed font-normal">{p.desc}</p>
                 </div>
               );
             })}
           </div>
 
           <div className="pt-4">
-            <Button
-              href="/contact?subject=Join+The+Collective"
-              variant="primary"
-              size="lg"
-              icon={<ArrowRight className="w-5 h-5" />}
+            <button
+              onClick={() => setRegisterModalOpen(true)}
+              className="px-8 py-4 rounded-2xl bg-[#00A2C9] hover:bg-[#008ba8] text-white font-black text-sm uppercase tracking-wider shadow-xl transition-all inline-flex items-center space-x-2"
             >
-              JOIN THE COLLECTIVE →
-            </Button>
+              <span>JOIN THE COLLECTIVE →</span>
+            </button>
           </div>
         </Container>
       </section>
 
-      {/* ── PHILOSOPHY & PROMISE ─────────────────── */}
-      <section className="py-24 bg-white border-b border-gray-200">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Philosophy */}
-            <div className="space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#6747ee]/10 text-[#6747ee] text-xs font-bold uppercase tracking-wider border border-[#6747ee]/20">
-                <Award className="w-4 h-4" />
-                <span>Our Philosophy</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
-                Excellence Through Collaboration
-              </h2>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                At Zendel Creatives, collaboration is more than a partnership—it is a shared
-                commitment to excellence. Every artisan within our collective represents a
-                standard where:
-              </p>
-              <div className="space-y-3 pt-2">
-                {philosophyPillars.map((pillar, idx) => (
-                  <div key={idx} className="flex items-center space-x-3 text-sm font-bold text-gray-800">
-                    <CheckCircle className="w-5 h-5 text-[#00A2C9] flex-shrink-0" />
-                    <span>{pillar}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="text-sm font-semibold text-gray-700 italic pt-2">
-                Together, we create celebrations that are not only{' '}
-                <strong>seen</strong>, but <strong>felt.</strong>
-              </p>
-            </div>
-
-            {/* Promise */}
-            <div className="rounded-3xl bg-slate-900 text-white border border-slate-800 shadow-xl p-10 space-y-6">
-              <span className="text-xs uppercase font-extrabold text-[#09BAF4] tracking-widest block">
-                Our Promise
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-black leading-snug">
-                Transforming Moments Into Timeless Memories
-              </h3>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                Every celebration carries a story. Our role is to bring that story to life
-                through creativity, craftsmanship, collaboration, and unforgettable execution.
-                From the first idea to the final farewell, Zendel Creatives brings together
-                exceptional people who believe that extraordinary experiences are created
-                through extraordinary attention to detail.
-              </p>
-              <blockquote className="border-l-4 border-[#00A2C9] pl-5">
-                <p className="text-base font-bold text-white italic">
-                  &ldquo;Together, we create extraordinary experiences where elegance meets
-                  imagination.&rdquo;
-                </p>
-              </blockquote>
-              <div className="pt-2">
-                <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400">
-                  Zendel Creatives
-                </p>
-                <p className="text-sm font-bold text-[#09BAF4] italic mt-0.5">
-                  Curating luxury. Celebrating artistry. Creating timeless moments.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* ── FINAL CTA ─────────────────────────────── */}
-      <section className="py-20 bg-slate-50 border-b border-gray-200">
-        <Container>
-          <div className="text-center max-w-2xl mx-auto space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900">
-              Ready to Experience the Collective?
-            </h2>
-            <p className="text-base text-gray-600 leading-relaxed">
-              Whether you are planning an extraordinary celebration, seeking exceptional
-              creative talent, or looking to join our artisan community — we would love to
-              hear from you.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 pt-2">
-              <Button href="/contact" variant="primary" size="lg" icon={<ArrowRight className="w-5 h-5" />}>
-                Enquire Now
-              </Button>
-              <Button href="/events" variant="outline" size="lg">
-                View Our Events
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Enquiry Modal */}
+      {/* Client Hire Enquiry Modal */}
       <Modal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        title="Artisan Booking & Connection Enquiry"
+        title="Book / Hire Artisan"
       >
-        <div className="max-h-[75vh] overflow-y-auto px-1">
-          <ArtisanEnquiryForm
-            artisanName={selectedArtisan.name}
-            artisanRole={selectedArtisan.role}
-            onSuccess={() => setModalOpen(false)}
-          />
-        </div>
+        <ArtisanEnquiryForm
+          artisanName={selectedArtisan.name}
+          artisanRole={selectedArtisan.role}
+          onSuccess={() => setModalOpen(false)}
+        />
+      </Modal>
+
+      {/* Artisan Registration Modal */}
+      <Modal
+        isOpen={registerModalOpen}
+        onClose={() => setRegisterModalOpen(false)}
+        title="Register as an Artisan"
+      >
+        <ArtisanRegistrationForm onSuccess={() => setRegisterModalOpen(false)} />
       </Modal>
     </>
   );
