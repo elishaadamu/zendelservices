@@ -1,8 +1,23 @@
 import type { Metadata } from 'next';
+import { Plus_Jakarta_Sans, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { companyData } from '@/lib/data/company';
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  weight: ['400', '600', '700', '800', '900'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -63,8 +78,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="antialiased min-h-screen flex flex-col bg-white text-gray-900 selection:bg-[#00A2C9] selection:text-white">
+    <html lang="en" className={`${jakarta.variable} ${playfair.variable} font-sans scroll-smooth`}>
+      <body className="antialiased min-h-screen flex flex-col bg-white text-gray-900 selection:bg-[#00A2C9] selection:text-white font-sans">
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
