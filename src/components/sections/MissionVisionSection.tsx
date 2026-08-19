@@ -2,6 +2,7 @@ import React from 'react';
 import { Compass, Eye, Target } from 'lucide-react';
 import { companyData } from '@/lib/data/company';
 import { Container } from '../layout/Container';
+import { StyledUnderline } from '../ui/StyledUnderline';
 
 export const MissionVisionSection: React.FC = () => {
   return (
@@ -15,8 +16,13 @@ export const MissionVisionSection: React.FC = () => {
           <span className="text-xs uppercase tracking-widest font-bold px-3.5 py-1 rounded-full bg-[#00A2C9]/10 text-[#00A2C9] border border-[#00A2C9]/20">
             Welcome to Zendel Services Limited
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mt-4 tracking-tight text-gray-900">
-            Guided By Excellence & Passion
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mt-4 tracking-tight text-gray-900 leading-[1.2]">
+            Guided By{' '}
+            <span className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-950">Excellence</span> &amp;{' '}
+            <span className="relative inline-block text-[#6747ee] font-black text-4xl sm:text-5xl lg:text-6xl">
+              Passion
+              <StyledUnderline color="#6747ee" variant="double" />
+            </span>
           </h2>
         </div>
 

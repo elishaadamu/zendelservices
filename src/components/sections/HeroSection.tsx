@@ -4,6 +4,8 @@ import { ArrowRight, Sparkles, Users, Video, Printer, Building2, ShieldCheck, Ch
 import { Container } from '../layout/Container';
 import { Button } from '../ui/Button';
 
+import { StyledUnderline } from '../ui/StyledUnderline';
+
 export const HeroSection: React.FC = () => {
   return (
     <section className="relative min-h-[600px] lg:min-h-[720px] flex items-center justify-center bg-slate-950 text-white overflow-hidden">
@@ -27,11 +29,17 @@ export const HeroSection: React.FC = () => {
           <span>Bespoke Event Planning &amp; Artisan Collective</span>
         </div>
 
-        {/* Main Headline & Subtitle */}
+        {/* Main Headline & Subtitle with Creative Font Sizes & Styled Underline */}
         <div className="space-y-4">
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1]">
-            Plan Bespoke Celebrations. <br className="hidden sm:block" />
-            <span className="text-[#09BAF4]">Hire Exceptional Event Artisans.</span>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.15]">
+            Plan <span className="text-4xl sm:text-6xl lg:text-7xl font-black text-white">Bespoke</span> Celebrations.{' '}
+            <br className="hidden sm:block" />
+            Hire{' '}
+            <span className="relative inline-block text-[#09BAF4] font-black text-4xl sm:text-6xl lg:text-7xl">
+              Exceptional
+              <StyledUnderline color="#09BAF4" variant="wave" />
+            </span>{' '}
+            Event Artisans.
           </h1>
           <p className="text-base sm:text-xl text-slate-300 font-normal max-w-3xl mx-auto leading-relaxed">
             From creative event direction and executive staffing to visual storytelling, custom design, and property management — we bring every celebration to life with precision.

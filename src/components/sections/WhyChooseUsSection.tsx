@@ -13,6 +13,8 @@ import { servicesData } from "@/lib/data/services";
 import { Container } from "../layout/Container";
 import { SectionHeading } from "../ui/SectionHeading";
 
+import { StyledUnderline } from '../ui/StyledUnderline';
+
 const iconMap = {
   Sparkles,
   Users,
@@ -25,11 +27,22 @@ export const WhyChooseUsSection: React.FC = () => {
   return (
     <section className="py-20 bg-[#f8fafc] border-b border-gray-200">
       <Container>
-        <SectionHeading
-          subtitle="Why Choose Us"
-          title="Top-Notch Services Built Around Your Needs"
-          description="We take immense pride in helping our corporate and private clients achieve their goals through unparalleled creativity, professional execution, and innovation."
-        />
+        {/* Creative Section Heading with Styled Underline */}
+        <div className="flex flex-col items-center text-center mb-16 max-w-4xl mx-auto">
+          <span className="text-xs sm:text-sm uppercase tracking-widest font-bold mb-3 px-3.5 py-1 rounded-full bg-[#00A2C9]/10 text-[#00A2C9] border border-[#00A2C9]/20">
+            Why Choose Us
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight leading-[1.2]">
+            Top-Notch Services{' '}
+            <span className="relative inline-block text-[#00A2C9] font-black">
+              Built Around Your Needs
+              <StyledUnderline color="#00A2C9" variant="curve" />
+            </span>
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-gray-600 max-w-2xl font-normal leading-relaxed">
+            We take immense pride in helping our corporate and private clients achieve their goals through unparalleled creativity, professional execution, and innovation.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesData.map((service) => {

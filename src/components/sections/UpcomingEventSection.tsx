@@ -4,6 +4,8 @@ import { eventsData } from "@/lib/data/events";
 import { Container } from "../layout/Container";
 import { Button } from "../ui/Button";
 
+import { StyledUnderline } from "../ui/StyledUnderline";
+
 export const UpcomingEventSection: React.FC = () => {
   const featuredEvent =
     eventsData.find((e) => e.slug === "dress-to-impress-gala-2027") ||
@@ -12,14 +14,19 @@ export const UpcomingEventSection: React.FC = () => {
   return (
     <section className="py-20 bg-slate-100 text-gray-900 border-t border-b border-gray-200 relative">
       <Container>
-        {/* Banner Announcement */}
+        {/* Banner Announcement with Creative Typography & Styled Underline */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#ff6900]/10 border border-[#ff6900]/30 text-[#ff6900] text-xs font-bold uppercase tracking-widest mb-4">
             <Sparkles className="w-4 h-4" />
             <span>London Annual Flagship Event </span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#00A2C9] leading-tight">
-            Dress 2 Impress Is Our Annual Event Hosted In London.
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 leading-[1.2]">
+            <span className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#ff6900]">Dress 2 Impress</span> is Our{' '}
+            <span className="relative inline-block text-[#00A2C9] font-black">
+              Annual Flagship Event
+              <StyledUnderline color="#00A2C9" variant="curve" />
+            </span>{' '}
+            Hosted in London.
           </h2>
         </div>
 
