@@ -31,6 +31,11 @@ export interface ClientEnquiry {
   locationPostcode: string;
   eventDate: string;
   numberOfArtisans: string;
+  staffTypes?: string[];
+  participantsCount?: string | number;
+  staffCount?: string | number;
+  source?: string;
   additionalInfo: string;
   createdAt: string;
 }
+

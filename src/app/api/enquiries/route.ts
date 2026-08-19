@@ -51,6 +51,10 @@ export async function POST(request: Request) {
       locationPostcode: body.locationPostcode || '',
       eventDate: body.eventDate || '',
       numberOfArtisans: body.numberOfArtisans || '1',
+      staffTypes: body.staffTypes || [],
+      participantsCount: body.participantsCount || '',
+      staffCount: body.staffCount || '',
+      source: body.source || 'General Booking',
       additionalInfo: body.additionalInfo || '',
       createdAt: new Date().toISOString(),
     };

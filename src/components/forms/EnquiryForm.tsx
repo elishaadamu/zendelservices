@@ -60,8 +60,33 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
     setLoading(true);
 
     try {
-      // Simulate asynchronous server action/API post
-      await new Promise((resolve) => setTimeout(resolve, 1200));
+      const res = await fetch('/api/enquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          artisanName: `Staffing: ${formData.staffTypes.join(', ')}`,
+          artisanRole: `${formData.staffCount} Staff for ~${formData.participantsCount} Guests`,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          country: 'United Kingdom',
+          city: 'London',
+          eventType: `Events Staffing (${formData.staffTypes.join(', ')})`,
+          locationPostcode: formData.locationPostcode,
+          eventDate: formData.eventDate,
+          numberOfArtisans: `${formData.staffCount} Staff (${formData.staffTypes.join(', ')})`,
+          staffTypes: formData.staffTypes,
+          participantsCount: formData.participantsCount,
+          staffCount: formData.staffCount,
+          source: 'Events Staffing Page',
+          additionalInfo: formData.additionalInfo,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to submit enquiry');
+      }
+
       setLoading(false);
       setSubmitted(true);
     } catch {
