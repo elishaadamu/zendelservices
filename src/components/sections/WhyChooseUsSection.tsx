@@ -52,49 +52,65 @@ export const WhyChooseUsSection: React.FC = () => {
             return (
               <div
                 key={service.slug}
-                className="bg-white rounded-2xl p-7 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col justify-between group hover:-translate-y-1"
+                className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200/90 flex flex-col justify-between group hover:-translate-y-1"
               >
                 <div>
-                  {/* Icon & Category Tag */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00A2C9]/10 to-[#6747ee]/10 text-[#00A2C9] group-hover:bg-[#00A2C9] group-hover:text-white flex items-center justify-center transition-colors duration-300 shadow-sm">
-                      <IconComponent className="w-7 h-7" />
+                  {/* Card Cover Image with Badge */}
+                  <div className="relative h-52 w-full overflow-hidden bg-slate-900">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-black/20" />
+                    
+                    {/* Top Floating Badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-white/95 text-slate-900 shadow-md">
+                        Zendel Core
+                      </span>
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-gray-100 text-gray-600">
-                      Zendel Core
-                    </span>
+
+                    {/* Floating Icon */}
+                    <div className="absolute bottom-4 right-4 w-11 h-11 rounded-xl bg-white text-[#00A2C9] flex items-center justify-center shadow-lg">
+                      <IconComponent className="w-5 h-5" />
+                    </div>
                   </div>
 
-                  {/* Title & Short Description */}
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#00A2C9] transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                    {service.shortDescription}
-                  </p>
+                  <div className="p-7">
+                    {/* Title & Short Description */}
+                    <h3 className="text-2xl font-black text-gray-900 mb-2.5 group-hover:text-[#00A2C9] transition-colors leading-tight">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-6 font-normal">
+                      {service.shortDescription}
+                    </p>
 
-                  {/* Highlight Features List */}
-                  <ul className="space-y-2 mb-6 pt-4 border-t border-gray-100">
-                    {service.features.slice(0, 3).map((feat, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-center text-xs text-gray-700 font-medium"
-                      >
-                        <Check className="w-3.5 h-3.5 text-[#00A2C9] mr-2 flex-shrink-0" />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
+                    {/* Highlight Features List */}
+                    <ul className="space-y-2.5 mb-6 pt-4 border-t border-gray-100">
+                      {service.features.slice(0, 3).map((feat, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-center text-xs text-gray-700 font-semibold"
+                        >
+                          <Check className="w-4 h-4 text-[#00A2C9] mr-2.5 flex-shrink-0" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
                 {/* Learn More Link */}
-                <Link
-                  href={`/${service.slug}`}
-                  className="inline-flex items-center text-sm font-bold text-[#00A2C9] hover:text-[#6747ee] transition-colors group-hover:translate-x-1 duration-200"
-                >
-                  <span>Explore {service.title}</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Link>
+                <div className="px-7 pb-7 pt-0">
+                  <Link
+                    href={`/${service.slug}`}
+                    className="inline-flex items-center text-sm font-extrabold text-[#00A2C9] hover:text-[#ff6900] transition-colors group-hover:translate-x-1 duration-200"
+                  >
+                    <span>Explore {service.title}</span>
+                    <ArrowRight className="w-4 h-4 ml-1.5" />
+                  </Link>
+                </div>
               </div>
             );
           })}
