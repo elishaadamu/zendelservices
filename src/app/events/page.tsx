@@ -286,19 +286,30 @@ export default function EventsPage() {
       </section>
 
       {/* DRESS 2 IMPRESS FLAGSHIP SHOWCASE SECTION */}
-      <section className="py-20 bg-white border-b border-gray-200">
+      <section className="py-24 bg-white border-b border-gray-200">
         <Container>
-          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white rounded-3xl p-8 sm:p-14 shadow-2xl overflow-hidden relative">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-14 shadow-2xl overflow-hidden relative border border-slate-800">
+            {/* Ambient Backlight Accent */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#00A2C9]/15 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#ff6900]/10 rounded-full blur-[120px] pointer-events-none" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
               {/* Text Information */}
               <div className="lg:col-span-7 space-y-6">
-                <span className="text-xs uppercase font-extrabold tracking-widest text-[#09BAF4] px-4 py-1.5 rounded-full bg-[#00A2C9]/20 border border-[#00A2C9]/30 inline-block">
+                <span className="text-xs uppercase font-black tracking-widest text-[#09BAF4] px-4 py-1.5 rounded-full bg-[#00A2C9]/20 border border-[#00A2C9]/30 inline-block shadow-sm">
                   FLAGSHIP ANNUAL EVENT
                 </span>
+
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
-                  About Zendel's Dress To Impress Event
+                  About Zendel's{' '}
+                  <span className="relative inline-block text-[#09BAF4]">
+                    Dress 2 Impress
+                    <StyledUnderline color="#09BAF4" variant="curve" />
+                  </span>{' '}
+                  Event
                 </h2>
-                <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-light">
+
+                <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-normal">
                   Dress2Impress is a prestigious dinner and dance event with a
                   focus on fashion and style. Hosted annually in London by
                   Zendel Events. Guests show up in their fanciest elegant
@@ -306,14 +317,30 @@ export default function EventsPage() {
                   a luxurious venue with an A-class service. The ticket price is
                   inclusive of 3-course meals, cocktails, and drinks. There is a
                   live DJ with great music and a red carpet for an unforgettable
-                  photography moment. Guests enjoy good company with a great
-                  atmosphere of a fun-filled night of fashion and flair with
-                  like-minded individuals who appreciate a good outfit. Whether
-                  you are into formal wear or prefer a more casual look, this is
-                  your chance to shine and express yourself through your
-                  wardrobe choices. It is usually a night full of surprises.
+                  photography moment.
                 </p>
-                <div className="pt-2">
+
+                {/* Event Highlights Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 pt-2">
+                  <div className="flex items-center space-x-2.5 text-xs sm:text-sm font-bold text-gray-200 bg-white/5 border border-white/10 px-3.5 py-2 rounded-xl">
+                    <span className="text-base">🍽️</span>
+                    <span>3-Course Meal &amp; Drinks</span>
+                  </div>
+                  <div className="flex items-center space-x-2.5 text-xs sm:text-sm font-bold text-gray-200 bg-white/5 border border-white/10 px-3.5 py-2 rounded-xl">
+                    <span className="text-base">🎧</span>
+                    <span>Live DJ &amp; Music</span>
+                  </div>
+                  <div className="flex items-center space-x-2.5 text-xs sm:text-sm font-bold text-gray-200 bg-white/5 border border-white/10 px-3.5 py-2 rounded-xl">
+                    <span className="text-base">📸</span>
+                    <span>Red Carpet Photography</span>
+                  </div>
+                  <div className="flex items-center space-x-2.5 text-xs sm:text-sm font-bold text-gray-200 bg-white/5 border border-white/10 px-3.5 py-2 rounded-xl">
+                    <span className="text-base">📍</span>
+                    <span>Luxury London Venue</span>
+                  </div>
+                </div>
+
+                <div className="pt-3">
                   <Button
                     href="https://www.eventbrite.co.uk/e/dress-to-impress-gala-2027-tickets-1990517220590?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-source=wa&utm-term=checkoutwidget"
                     variant="warning"
@@ -325,21 +352,26 @@ export default function EventsPage() {
                 </div>
               </div>
 
-              {/* Video Player */}
+              {/* Video Player Column */}
               <div className="lg:col-span-5 relative">
-                <div className="rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 bg-black">
+                <div className="rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 bg-black aspect-[4/3] sm:aspect-video lg:aspect-[4/3] relative group">
                   <video
+                    src="/ZENDEL-STAFFING-ADVERT.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     controls
-                    preload="metadata"
-                    poster="https://zendelserviceslimited.com/wp-content/uploads/2026/06/Screenshot-2026-06-18-at-12.58.09.png"
-                    className="w-full h-auto max-h-[500px] object-cover"
+                    preload="auto"
+                    className="w-full h-full object-cover"
                   >
-                    <source
-                      src="/ZENDEL-STAFFING-ADVERT.mp4"
-                      type="video/mp4"
-                    />
                     Your browser does not support HTML5 video playback.
                   </video>
+                  <div className="absolute top-3 right-3 pointer-events-none">
+                    <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/70 text-white backdrop-blur-md border border-white/20">
+                      Auto-Playing (Muted)
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
