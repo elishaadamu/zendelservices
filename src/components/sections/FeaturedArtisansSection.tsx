@@ -9,9 +9,8 @@ import {
   MapPin,
   ExternalLink,
   ShieldCheck,
-  Briefcase,
-  Layers,
   Send,
+  Globe,
 } from 'lucide-react';
 import { Container } from '../layout/Container';
 import { Button } from '../ui/Button';
@@ -24,6 +23,7 @@ import { Artisan } from '@/lib/types/artisan';
 export const FeaturedArtisansSection: React.FC = () => {
   const [artisans, setArtisans] = useState<Artisan[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   // Modals
   const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
@@ -50,15 +50,33 @@ export const FeaturedArtisansSection: React.FC = () => {
     loadArtisans();
   }, []);
 
+  // Automatic Moving Carousel (auto-scrolls every 2.8s, pauses on hover)
+  useEffect(() => {
+    if (artisans.length === 0 || isPaused) return;
+
+    const timer = setInterval(() => {
+      if (carouselRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 15) {
+          carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          carouselRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+        }
+      }
+    }, 2800);
+
+    return () => clearInterval(timer);
+  }, [artisans, isPaused]);
+
   const scrollLeft = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -360, behavior: 'smooth' });
+      carouselRef.current.scrollBy({ left: -340, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 360, behavior: 'smooth' });
+      carouselRef.current.scrollBy({ left: 340, behavior: 'smooth' });
     }
   };
 
@@ -79,7 +97,7 @@ export const FeaturedArtisansSection: React.FC = () => {
               </span>
             </h2>
             <p className="text-base text-gray-600 font-normal leading-relaxed">
-              Explore the premier roster of vetted artisans and specialists available for your luxury events, galas, and productions.
+              Explore our moving roster of verified individual artisans available for your upcoming luxury celebrations and productions.
             </p>
           </div>
 
@@ -122,12 +140,16 @@ export const FeaturedArtisansSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Carousel Container (No images, No connect button, Clean Numbered Luxury Styling) */}
+        {/* Moving Carousel of Artisan Cards (Name, Role, Location, Portfolio - No Image, No Connect Button) */}
         {loading ? (
           <div className="py-20 text-center text-gray-400 font-bold">Loading verified artisans...</div>
         ) : (
           <div
             ref={carouselRef}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
             className="flex space-x-6 overflow-x-auto pb-6 pt-2 scrollbar-none snap-x snap-mandatory scroll-smooth"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
@@ -136,17 +158,17 @@ export const FeaturedArtisansSection: React.FC = () => {
               return (
                 <div
                   key={artisan.id || index}
-                  className="snap-start shrink-0 w-[310px] sm:w-[360px] p-7 rounded-3xl bg-white border border-slate-200/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative"
+                  className="snap-start shrink-0 w-[290px] sm:w-[330px] p-7 rounded-3xl bg-white border border-slate-200/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative"
                 >
                   <div className="space-y-4">
-                    {/* Top Row: Numeral, Pillar Tag & Verified Badge */}
+                    {/* Top Row: Numeral & Verified Badge */}
                     <div className="flex items-center justify-between">
-                      <span className="font-serif text-3xl font-black text-slate-200 group-hover:text-[#00A2C9]/30 transition-colors">
+                      <span className="font-serif text-3xl font-black text-slate-200 group-hover:text-[#00A2C9]/40 transition-colors">
                         {numStr}
                       </span>
                       <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-black uppercase tracking-wider">
                         <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                        <span>VERIFIED ARTISAN</span>
+                        <span>VERIFIED</span>
                       </span>
                     </div>
 
@@ -156,7 +178,7 @@ export const FeaturedArtisansSection: React.FC = () => {
                     </span>
 
                     {/* Name & Role */}
-                    <div>
+                    <div className="pt-1">
                       <h3 className="text-xl font-black text-gray-950 group-hover:text-[#00A2C9] transition-colors leading-snug">
                         {artisan.name}
                       </h3>
@@ -166,34 +188,14 @@ export const FeaturedArtisansSection: React.FC = () => {
                     </div>
 
                     {/* Location */}
-                    <div className="flex items-center space-x-1.5 text-xs text-gray-500 font-semibold pt-1 border-t border-slate-100">
+                    <div className="flex items-center space-x-1.5 text-xs text-gray-500 font-semibold pt-2 border-t border-slate-100">
                       <MapPin className="w-3.5 h-3.5 text-[#ff6900] shrink-0" />
                       <span>{artisan.city}, {artisan.country}</span>
                     </div>
-
-                    {/* About Excerpt */}
-                    <div className="space-y-1">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
-                        About
-                      </span>
-                      <p className="text-xs text-gray-600 line-clamp-3 leading-relaxed font-normal">
-                        {artisan.about}
-                      </p>
-                    </div>
-
-                    {/* Key Expertise */}
-                    <div className="space-y-1 pt-2 border-t border-slate-100">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
-                        Expertise
-                      </span>
-                      <p className="text-xs font-bold text-gray-900 line-clamp-2 leading-relaxed">
-                        {artisan.expertise}
-                      </p>
-                    </div>
                   </div>
 
-                  {/* Card Bottom: Portfolio Link Only (No Connect Button) */}
-                  <div className="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                  {/* Card Bottom: Portfolio Link Only */}
+                  <div className="pt-4 mt-5 border-t border-slate-100 flex items-center justify-between text-xs">
                     {artisan.portfolio ? (
                       <a
                         href={artisan.portfolio}
@@ -202,7 +204,7 @@ export const FeaturedArtisansSection: React.FC = () => {
                         className="inline-flex items-center space-x-1.5 text-xs font-black text-[#00A2C9] hover:underline underline-offset-4"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
-                        <span>View Portfolio</span>
+                        <span>Portfolio</span>
                       </a>
                     ) : (
                       <span className="text-[11px] font-bold text-gray-400">Portfolio via Zendel</span>

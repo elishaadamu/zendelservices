@@ -415,11 +415,11 @@ export const MediaCreativesClient: React.FC = () => {
           </div>
 
           {/* Full Artisan Profiles Showcase (Clean Numbered Image-Free Cards with Portfolio and No Connect Button) */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {loadingArtisans ? (
-              <div className="col-span-2 p-16 text-center text-gray-400 font-bold">Loading artisan profiles...</div>
+              <div className="col-span-3 p-16 text-center text-gray-400 font-bold">Loading artisan profiles...</div>
             ) : filteredArtisans.length === 0 ? (
-              <div className="col-span-2 p-16 text-center text-gray-500 bg-white rounded-3xl border border-gray-200 italic">
+              <div className="col-span-3 p-16 text-center text-gray-500 bg-white rounded-3xl border border-gray-200 italic">
                 No verified artisans found in this category yet.
               </div>
             ) : (
@@ -428,12 +428,12 @@ export const MediaCreativesClient: React.FC = () => {
                 return (
                   <div
                     key={artisan.id || index}
-                    className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative"
+                    className="p-7 rounded-3xl bg-white border border-slate-200/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative"
                   >
-                    <div className="space-y-5">
+                    <div className="space-y-4">
                       {/* Top Bar: Numeral, Pillar & Verified Badge */}
                       <div className="flex items-center justify-between">
-                        <span className="font-serif text-3xl font-black text-slate-200 group-hover:text-[#00A2C9]/30 transition-colors">
+                        <span className="font-serif text-3xl font-black text-slate-200 group-hover:text-[#00A2C9]/40 transition-colors">
                           {numStr}
                         </span>
                         <div className="flex items-center space-x-2">
@@ -449,72 +449,19 @@ export const MediaCreativesClient: React.FC = () => {
 
                       {/* Name & Title */}
                       <div>
-                        <h3 className="text-2xl font-black text-gray-950 group-hover:text-[#00A2C9] transition-colors leading-snug">
+                        <h3 className="text-xl font-black text-gray-950 group-hover:text-[#00A2C9] transition-colors leading-snug">
                           {artisan.name}
                         </h3>
-                        <p className="text-sm font-bold text-[#00A2C9] mt-0.5">
+                        <p className="text-xs font-bold text-[#00A2C9] mt-1">
                           {artisan.title}
                         </p>
-                        <div className="flex items-center space-x-1.5 text-xs text-gray-500 font-semibold mt-2">
-                          <MapPin className="w-3.5 h-3.5 text-[#ff6900]" />
-                          <span>{artisan.city}, {artisan.country}</span>
-                        </div>
                       </div>
 
-                      {/* About */}
-                      <div className="space-y-1 pt-3 border-t border-slate-100">
-                        <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
-                          *About* (Creative Identity &amp; Approach)
-                        </span>
-                        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-normal">
-                          {artisan.about}
-                        </p>
+                      {/* Location */}
+                      <div className="flex items-center space-x-1.5 text-xs text-gray-500 font-semibold pt-2 border-t border-slate-100">
+                        <MapPin className="w-3.5 h-3.5 text-[#ff6900] shrink-0" />
+                        <span>{artisan.city}, {artisan.country}</span>
                       </div>
-
-                      {/* Expertise & Signature Style */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                        <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
-                          <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
-                            *Expertise*
-                          </span>
-                          <p className="text-xs font-bold text-gray-900 leading-snug">
-                            {artisan.expertise}
-                          </p>
-                        </div>
-
-                        <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
-                          <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
-                            *Signature Style*
-                          </span>
-                          <p className="text-xs font-bold text-gray-900 leading-snug">
-                            {artisan.signatureStyle || 'Bespoke precision, luxury aesthetics, and seamless execution.'}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Experience & Credentials */}
-                      {artisan.experienceCredentials && (
-                        <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
-                          <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
-                            *Experience &amp; Credentials*
-                          </span>
-                          <p className="text-xs text-gray-700 leading-relaxed font-medium">
-                            {artisan.experienceCredentials}
-                          </p>
-                        </div>
-                      )}
-
-                      {/* Zendel Creatives Role */}
-                      {artisan.zendelRole && (
-                        <div className="p-3.5 rounded-2xl bg-cyan-50/40 border border-cyan-100/60 space-y-1">
-                          <span className="text-[10px] font-black uppercase tracking-wider text-[#00A2C9] block">
-                            *Zendel Creatives Role*
-                          </span>
-                          <p className="text-xs text-gray-800 leading-relaxed font-semibold">
-                            {artisan.zendelRole}
-                          </p>
-                        </div>
-                      )}
                     </div>
 
                     {/* Card Footer: Portfolio Link Only (No Connect Button) */}
