@@ -1,11 +1,13 @@
-import React from 'react';
-import { Ticket, Sparkles, Film } from 'lucide-react';
-import { eventsData } from '@/lib/data/events';
-import { Container } from '../layout/Container';
-import { Button } from '../ui/Button';
+import React from "react";
+import { Ticket, Sparkles, Film } from "lucide-react";
+import { eventsData } from "@/lib/data/events";
+import { Container } from "../layout/Container";
+import { Button } from "../ui/Button";
 
 export const UpcomingEventSection: React.FC = () => {
-  const featuredEvent = eventsData.find((e) => e.slug === 'dress-to-impress-gala-2027') || eventsData[0];
+  const featuredEvent =
+    eventsData.find((e) => e.slug === "dress-to-impress-gala-2027") ||
+    eventsData[0];
 
   return (
     <section className="py-20 bg-slate-100 text-gray-900 border-t border-b border-gray-200 relative">
@@ -14,7 +16,7 @@ export const UpcomingEventSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#ff6900]/10 border border-[#ff6900]/30 text-[#ff6900] text-xs font-bold uppercase tracking-widest mb-4">
             <Sparkles className="w-4 h-4" />
-            <span>London Annual Flagship Event</span>
+            <span>London Annual Flagship Event </span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-[#00A2C9] leading-tight">
             Dress 2 Impress Is Our Annual Event Hosted In London.
@@ -57,8 +59,12 @@ export const UpcomingEventSection: React.FC = () => {
                 <Film className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900">Zendel Staffing & Event Advert</h3>
-                <p className="text-xs text-gray-500">Official promotional showcase video</p>
+                <h3 className="text-lg font-bold text-gray-900">
+                  Zendel Staffing & Event Advert
+                </h3>
+                <p className="text-xs text-gray-500">
+                  Official promotional showcase video
+                </p>
               </div>
             </div>
 
