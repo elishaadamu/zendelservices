@@ -17,6 +17,7 @@ import { Container } from "@/components/layout/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { EventGallerySection } from "@/components/sections/EventGallerySection";
+import { StyledUnderline } from "@/components/ui/StyledUnderline";
 
 export const metadata: Metadata = {
   title: "Event Organisation & Management — Zendel Services Limited",
@@ -36,27 +37,30 @@ const corporateServices = [
 export default function EventsPage() {
   return (
     <>
-      {/* Hero Header with Background Image */}
-      <section className="relative min-h-[450px] h-[55vh] flex items-center justify-center text-center bg-slate-950 text-white overflow-hidden border-b border-white/10">
-        {/* Background Image & Gradient Overlay */}
+      {/* Hero Header with Authentic Background Image & Dark Luxury Overlay */}
+      <section className="relative min-h-[460px] flex items-center justify-center text-center bg-slate-950 text-white overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80"
+            src="/gallery/IMG-20260602-WA0009.jpg"
             alt="Event Organisation & Management Background"
-            className="w-full h-full object-cover opacity-35"
+            className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-900/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-900/60" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00A2C9]/20 blur-[130px] rounded-full pointer-events-none" />
         </div>
 
-        <Container className="relative z-10 py-12 max-w-4xl mx-auto space-y-4">
-          <span className="text-xs uppercase tracking-widest font-extrabold px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-[#09BAF4] border border-white/20 inline-block shadow-lg">
+        <Container className="relative z-10 py-16 max-w-4xl mx-auto space-y-5">
+          <span className="text-xs uppercase tracking-widest font-black px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-[#09BAF4] border border-white/20 inline-block shadow-lg">
             ZENDEL EVENTS
           </span>
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight drop-shadow-md">
-            Event Organisation &amp; Management
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.15]">
+            Event Organisation &amp;{' '}
+            <span className="relative inline-block text-[#09BAF4]">
+              Management
+              <StyledUnderline color="#09BAF4" variant="curve" />
+            </span>
           </h1>
-          <p className="text-lg sm:text-2xl text-[#09BAF4] font-bold italic max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-slate-200 font-normal max-w-3xl mx-auto leading-relaxed">
             Imaginatively designing and meticulously executing bespoke
             celebrations worldwide.
           </p>
@@ -66,15 +70,14 @@ export default function EventsPage() {
       {/* INTRODUCTION SECTION */}
       <section className="py-16 bg-white border-b border-gray-200">
         <Container>
-          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white rounded-3xl p-8 sm:p-14 shadow-2xl relative overflow-hidden text-center max-w-5xl mx-auto space-y-6">
-            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#00A2C9] via-[#6747ee] to-[#b92f8d]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-[#00A2C9]/20 blur-[120px] rounded-full pointer-events-none" />
+          <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-14 shadow-2xl relative overflow-hidden text-center max-w-5xl mx-auto space-y-6 border border-slate-800">
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#00A2C9]" />
 
-            <span className="text-xs uppercase font-extrabold tracking-widest text-[#09BAF4] px-4 py-1.5 rounded-full bg-[#00A2C9]/20 border border-[#00A2C9]/30 inline-block">
+            <span className="text-xs uppercase font-black tracking-widest text-[#09BAF4] px-4 py-1.5 rounded-full bg-[#00A2C9]/20 border border-[#00A2C9]/30 inline-block">
               INTRODUCTION
             </span>
 
-            <p className="text-lg sm:text-2xl text-gray-100 max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-base sm:text-xl text-gray-200 max-w-4xl mx-auto leading-relaxed font-normal">
               <strong className="text-white font-black">Zendel Events</strong>{" "}
               is a luxury provider of world-class corporate events and
               conferences, parties, traditional marriage and weddings, and other
@@ -91,14 +94,14 @@ export default function EventsPage() {
         <Container className="space-y-16">
           {/* Card 1: EVENT */}
           <div className="bg-white rounded-3xl border border-gray-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group hover:border-[#00A2C9] transition-all">
-            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900">
+            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900 min-h-[300px]">
               <img
-                src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80"
+                src="/gallery/IMG-20260602-WA0016.jpg"
                 alt="Event Logistics"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute top-4 left-4">
-                <span className="text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#00A2C9] text-white shadow-md">
+                <span className="text-xs font-black uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#00A2C9] text-white shadow-md">
                   LOGISTICS &amp; STRATEGY
                 </span>
               </div>
@@ -109,14 +112,14 @@ export default function EventsPage() {
                   <Compass className="w-5 h-5" />
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-gray-900">
-                  EVENT
+                  EVENT LOGISTICS
                 </h2>
               </div>
               <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-semibold">
                 The backbone of every successful event lies in the effective
                 planning, procurement and management of the right logistics.
               </p>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
                 Ensuring a great implementation of an event strategy involves
                 the appropriate deployment of logistics for a seamless flow and
                 flawless execution of the event process.
@@ -132,10 +135,10 @@ export default function EventsPage() {
                   <GlassWater className="w-5 h-5" />
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-gray-900">
-                  PARTIES
+                  PARTIES &amp; CELEBRATIONS
                 </h2>
               </div>
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-normal">
                 As party organisers, let us take the pressure and worry out of
                 planning your next party. We’ll help you design the perfect
                 party experience, from sourcing fantastic venues and suppliers
@@ -143,14 +146,14 @@ export default function EventsPage() {
                 have it all under control.
               </p>
             </div>
-            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900 order-1 lg:order-2">
+            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900 order-1 lg:order-2 min-h-[300px]">
               <img
-                src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80"
+                src="/gallery/IMG-20260602-WA0019.jpg"
                 alt="Parties"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute top-4 left-4">
-                <span className="text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#b92f8d] text-white shadow-md">
+                <span className="text-xs font-black uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#b92f8d] text-white shadow-md">
                   PARTY ORGANISERS
                 </span>
               </div>
@@ -159,14 +162,14 @@ export default function EventsPage() {
 
           {/* Card 3: WEDDINGS */}
           <div className="bg-white rounded-3xl border border-gray-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group hover:border-[#6747ee] transition-all">
-            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900">
+            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900 min-h-[300px]">
               <img
-                src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
+                src="/gallery/IMG-20260602-WA0031.jpg"
                 alt="Weddings"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute top-4 left-4">
-                <span className="text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#6747ee] text-white shadow-md">
+                <span className="text-xs font-black uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#6747ee] text-white shadow-md">
                   LUXURY WEDDINGS
                 </span>
               </div>
@@ -177,17 +180,17 @@ export default function EventsPage() {
                   <Heart className="w-5 h-5" />
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-gray-900">
-                  WEDDINGS
+                  WEDDINGS &amp; RECEPTIONS
                 </h2>
               </div>
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-normal">
                 Firstly, let's raise a proverbial glass to you -
                 congratulations! Secondly, Zendel is a luxury wedding and event
                 planning company dedicated to creating breathtaking weddings
                 throughout London and beyond, so you are already in a great spot
                 to begin wherever you are planning your big day.
               </p>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-medium">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
                 At Zendel we’re all about innovation, beauty, honesty and
                 ultimately - fun. Every wedding we create is bound by
                 understated old school romance and stylised by an addiction to
@@ -205,28 +208,28 @@ export default function EventsPage() {
                   <Crown className="w-5 h-5" />
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-gray-900">
-                  TRADITIONAL MARRIAGE
+                  TRADITIONAL MARRIAGES
                 </h2>
               </div>
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-normal">
                 Planning your special day should be fun. However, with endless
                 options available to couples, it can quickly become both
                 overwhelming and time-consuming. We are here to make the journey
                 as smooth as possible. We know how important culture is when it
                 comes to traditional marriage. Our team researches and studies
                 every culture and ensures nothing is missed in your traditional
-                marriage. From Ghanaian Ashante traditional marriage to Nigerian
-                traditional marriage, we are here to plan it.
+                marriage. From Ghanaian Ashanti traditional marriage to Nigerian
+                traditional weddings, we are here to plan it.
               </p>
             </div>
-            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900 order-1 lg:order-2">
+            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900 order-1 lg:order-2 min-h-[300px]">
               <img
-                src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80"
+                src="/gallery/IMG-20260602-WA0026.jpg"
                 alt="Traditional Marriage"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute top-4 left-4">
-                <span className="text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#ff6900] text-white shadow-md">
+                <span className="text-xs font-black uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#ff6900] text-white shadow-md">
                   CULTURAL CEREMONIES
                 </span>
               </div>
@@ -235,14 +238,14 @@ export default function EventsPage() {
 
           {/* Card 5: CORPORATE EVENTS */}
           <div className="bg-white rounded-3xl border border-gray-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group hover:border-[#00A2C9] transition-all">
-            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900">
+            <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900 min-h-[300px]">
               <img
-                src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80"
+                src="/gallery/IMG-20260602-WA0052.jpg"
                 alt="Corporate Events"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute top-4 left-4">
-                <span className="text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#00A2C9] text-white shadow-md">
+                <span className="text-xs font-black uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#00A2C9] text-white shadow-md">
                   CORPORATE SOLUTIONS
                 </span>
               </div>
@@ -256,7 +259,7 @@ export default function EventsPage() {
                   CORPORATE EVENTS
                 </h2>
               </div>
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-normal">
                 The corporate events we produce include meetings, conferences,
                 company parties, serminars, corporate festivals, Christmas
                 parties, away days, and everything else in between.

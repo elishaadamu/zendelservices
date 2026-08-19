@@ -11,7 +11,7 @@ import {
   Heart,
   Calendar,
   Cake,
-  CheckCircle,
+  CheckCircle2,
   ArrowRight,
   Sparkles,
   DollarSign,
@@ -23,6 +23,7 @@ import {
 import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/Button';
 import { EnquiryForm } from '@/components/forms/EnquiryForm';
+import { StyledUnderline } from '@/components/ui/StyledUnderline';
 
 export const metadata: Metadata = {
   title: 'Events Staffing Solutions — Zendel Services Limited',
@@ -43,37 +44,40 @@ const eventBadges = [
 
 const serviceCards = [
   {
-    title: 'Ushers',
-    image: 'https://zendelserviceslimited.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-25-at-14.36.45-1.jpeg',
+    num: '01',
+    title: 'Executive Ushers',
+    image: '/collective-ushers.jpg',
     bullets: [
-      'Guest reception & seating',
-      'Registration support',
-      'Crowd control',
-      'Welcoming guests',
-      'Support with drinks servicing and event catering.',
+      'Guest reception & priority seating',
+      'Registration support & digital verification',
+      'Crowd control & VIP protocol escort',
+      'Welcoming guests with poise and warmth',
+      'Assistance with drinks servicing and catering flow',
     ],
-    accentColor: 'border-[#00A2C9] text-[#00A2C9] bg-[#00A2C9]/10',
     badge: 'Guest Relations',
   },
   {
+    num: '02',
     title: 'Event Hosts',
-    image: 'https://zendelserviceslimited.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-25-at-14.36.45-2.jpeg',
+    image: '/collective-fashion.jpg',
     bullets: [
-      'Managing event flow',
-      'Announcements & guest engagement',
+      'Managing stage & schedule flow',
+      'Announcements & attendee engagement',
+      'Keynote speaker & VIP hospitality',
+      'Atmosphere & energy curation',
     ],
-    accentColor: 'border-[#b92f8d] text-[#b92f8d] bg-[#b92f8d]/10',
     badge: 'Flow & Atmosphere',
   },
   {
+    num: '03',
     title: 'Event Coordinators',
-    image: 'https://zendelserviceslimited.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-25-at-14.36.45-7.jpeg',
+    image: '/artisan-event-planner.jpg',
     bullets: [
-      'Oversee event logistics',
-      'Liaise with vendors',
-      'Manage timelines & troubleshoot issues',
+      'Overseeing on-site logistics & floor plan',
+      'Liaising with caterers, decorators & tech crews',
+      'Live timeline tracking & proactive troubleshooting',
+      'End-to-end management from setup to breakdown',
     ],
-    accentColor: 'border-[#6747ee] text-[#6747ee] bg-[#6747ee]/10',
     badge: 'Operations & Logistics',
   },
 ];
@@ -81,20 +85,19 @@ const serviceCards = [
 export default function EventsStaffingPage() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[480px] h-[55vh] flex items-center justify-center text-center bg-slate-950 text-white overflow-hidden border-b border-white/10">
-        {/* Background Image & Ambient Glow Overlay */}
+      {/* Hero Section with Dark Luxury Overlay */}
+      <section className="relative min-h-[460px] flex items-center justify-center text-center bg-slate-950 text-white overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://zendelserviceslimited.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-25-at-14.36.45-8.jpeg"
+            src="/collective-ushers.jpg"
             alt="Zendel Events Staffing Background"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-25"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-900/60" />
           <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#00A2C9]/20 blur-[130px] rounded-full pointer-events-none" />
         </div>
 
-        <Container className="relative z-10 py-12 max-w-4xl mx-auto space-y-6">
+        <Container className="relative z-10 py-16 max-w-4xl mx-auto space-y-6">
           {/* Star Rating Badge */}
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg">
             <div className="flex items-center space-x-1 text-[#09BAF4]">
@@ -102,16 +105,20 @@ export default function EventsStaffingPage() {
                 <Star key={i} className="w-4 h-4 fill-current" />
               ))}
             </div>
-            <span className="text-xs font-extrabold uppercase tracking-widest text-white">
+            <span className="text-xs font-black uppercase tracking-widest text-white">
               5-Star Rated Staffing
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
-            Events Staffing Solutions
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.15]">
+            Events{' '}
+            <span className="relative inline-block text-[#09BAF4]">
+              Staffing Solutions
+              <StyledUnderline color="#09BAF4" variant="curve" />
+            </span>
           </h1>
 
-          <p className="text-base sm:text-xl text-slate-300 font-light max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-slate-300 font-normal max-w-3xl mx-auto leading-relaxed">
             Your one-stop shop for all event staffing solutions. Our staff are a well-trained, professional, and well-presented team ready to elevate your event.
           </p>
         </Container>
@@ -119,19 +126,19 @@ export default function EventsStaffingPage() {
 
       {/* Main Body Container */}
       <section className="py-20 bg-slate-50 border-b border-gray-200">
-        <Container className="-mt-24 relative z-20">
+        <Container className="-mt-20 relative z-20">
           {/* Intro Card */}
-          <div className="bg-white rounded-3xl border border-gray-200 shadow-2xl p-8 sm:p-14 text-center max-w-5xl mx-auto space-y-8 relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#00A2C9] via-[#6747ee] to-[#b92f8d]" />
+          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-2xl p-8 sm:p-14 text-center max-w-5xl mx-auto space-y-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#00A2C9]" />
 
             <div className="space-y-4 max-w-3xl mx-auto">
-              <span className="text-xs uppercase font-extrabold tracking-widest text-[#00A2C9] px-3.5 py-1 rounded-full bg-[#00A2C9]/10 border border-[#00A2C9]/20 inline-block">
+              <span className="text-xs uppercase font-black tracking-widest text-[#00A2C9] px-4 py-1.5 rounded-full bg-[#00A2C9]/10 border border-[#00A2C9]/20 inline-block">
                 Zendel Executive Staffing
               </span>
-              <p className="text-xl sm:text-2xl text-gray-800 leading-relaxed font-bold">
-                We don't just provide <span className="text-[#00A2C9]">Ushers</span>—we provide <span className="text-[#b92f8d]">Hosts & Coordinators</span> to run your entire event smoothly from start to finish.
+              <p className="text-xl sm:text-2xl text-gray-900 leading-relaxed font-black">
+                We don't just provide <span className="text-[#00A2C9]">Ushers</span>—we provide <span className="text-[#b92f8d]">Hosts &amp; Coordinators</span> to run your entire event smoothly from start to finish.
               </p>
-              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed font-normal">
                 We provide staffing for corporate events, conferences, meetings, concerts, and shows, as well as private events including weddings, funeral receptions, and birthday parties.
               </p>
             </div>
@@ -155,14 +162,18 @@ export default function EventsStaffingPage() {
 
           {/* Services Section Header */}
           <div className="mt-28 text-center max-w-3xl mx-auto space-y-3 mb-16">
-            <span className="text-xs uppercase font-extrabold text-[#6747ee] tracking-widest px-3.5 py-1 rounded-full bg-[#6747ee]/10 border border-[#6747ee]/20 inline-block">
-              Services Offered
+            <span className="text-xs uppercase font-black text-[#6747ee] tracking-widest px-4 py-1.5 rounded-full bg-[#6747ee]/10 border border-[#6747ee]/20 inline-block">
+              Personnel Disciplines
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-gray-900 tracking-tight">
-              We Provide Specialized Event Personnel
+            <h2 className="text-3xl sm:text-5xl font-black text-gray-950 tracking-tight">
+              Specialized Event{' '}
+              <span className="relative inline-block text-[#00A2C9]">
+                Personnel
+                <StyledUnderline color="#00A2C9" variant="curve" />
+              </span>
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-              We provide specialized event personnel dedicated to making your event a remarkable success.
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed font-normal">
+              Rigorously vetted and trained professionals dedicated to making your event a remarkable success.
             </p>
           </div>
 
@@ -171,18 +182,23 @@ export default function EventsStaffingPage() {
             {serviceCards.map((service, i) => (
               <div
                 key={i}
-                className="bg-white rounded-3xl border border-gray-200 shadow-xl overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-2xl hover:border-[#00A2C9] transition-all duration-300 group"
+                className="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden flex flex-col hover:-translate-y-2 hover:shadow-2xl hover:border-[#00A2C9] transition-all duration-300 group"
               >
                 <div className="relative h-64 overflow-hidden bg-slate-900">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute top-4 left-4">
-                    <span className="text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-white/95 text-gray-900 shadow-md backdrop-blur-md">
+                  
+                  {/* Top Floating Badge & Large Numeral */}
+                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+                    <span className="text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-white/95 text-gray-900 shadow-md backdrop-blur-md">
                       {service.badge}
+                    </span>
+                    <span className="font-serif text-3xl font-black text-white/80 drop-shadow">
+                      {service.num}
                     </span>
                   </div>
                 </div>
@@ -195,8 +211,8 @@ export default function EventsStaffingPage() {
 
                     <ul className="space-y-3">
                       {service.bullets.map((bullet, bIdx) => (
-                        <li key={bIdx} className="flex items-start space-x-3 text-sm text-gray-700 leading-relaxed font-medium">
-                          <CheckCircle className="w-5 h-5 text-[#00A2C9] flex-shrink-0 mt-0.5" />
+                        <li key={bIdx} className="flex items-start space-x-3 text-sm text-gray-700 leading-relaxed font-semibold">
+                          <CheckCircle2 className="w-5 h-5 text-[#00A2C9] flex-shrink-0 mt-0.5" />
                           <span>{bullet}</span>
                         </li>
                       ))}
@@ -208,24 +224,24 @@ export default function EventsStaffingPage() {
           </div>
 
           {/* Feature Banner */}
-          <div className="bg-white border border-gray-200 rounded-3xl p-8 sm:p-12 shadow-xl mb-24 grid grid-cols-1 md:grid-cols-2 gap-8 items-center divide-y md:divide-y-0 md:divide-x divide-gray-200">
+          <div className="bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-12 shadow-xl mb-24 grid grid-cols-1 md:grid-cols-2 gap-8 items-center divide-y md:divide-y-0 md:divide-x divide-slate-100">
             <div className="flex items-center space-x-6 pr-4 pb-6 md:pb-0">
               <div className="w-16 h-16 rounded-2xl bg-[#00A2C9]/10 text-[#00A2C9] border border-[#00A2C9]/20 flex items-center justify-center flex-shrink-0 shadow-inner">
                 <HeartHandshake className="w-8 h-8" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-xl font-extrabold text-gray-900">Client-Focused Service</h4>
-                <p className="text-sm text-gray-600 leading-relaxed">Reliable and tailored to your specific event needs.</p>
+                <h4 className="text-xl font-black text-gray-950">Client-Focused Service</h4>
+                <p className="text-sm text-gray-600 leading-relaxed font-normal">Reliable, professional, and tailored to your specific event needs.</p>
               </div>
             </div>
 
             <div className="flex items-center space-x-6 md:pl-8 pt-6 md:pt-0">
-              <div className="w-16 h-16 rounded-2xl bg-[#b92f8d]/10 text-[#b92f8d] border border-[#b92f8d]/20 flex items-center justify-center flex-shrink-0 shadow-inner">
+              <div className="w-16 h-16 rounded-2xl bg-[#ff6900]/10 text-[#ff6900] border border-[#ff6900]/20 flex items-center justify-center flex-shrink-0 shadow-inner">
                 <DollarSign className="w-8 h-8" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-xl font-extrabold text-gray-900">Flexible Packages</h4>
-                <p className="text-sm text-gray-600 leading-relaxed">Designed to provide high quality within your budget.</p>
+                <h4 className="text-xl font-black text-gray-950">Flexible Packages</h4>
+                <p className="text-sm text-gray-600 leading-relaxed font-normal">Designed to provide highest standard staffing within your budget.</p>
               </div>
             </div>
           </div>

@@ -4,6 +4,8 @@ import { companyData } from '@/lib/data/company';
 import { Container } from '../layout/Container';
 import { EnquiryForm } from '../forms/EnquiryForm';
 
+import { StyledUnderline } from '../ui/StyledUnderline';
+
 export const ContactCTASection: React.FC = () => {
   return (
     <section className="py-20 bg-slate-50 text-gray-900 relative">
@@ -12,12 +14,15 @@ export const ContactCTASection: React.FC = () => {
           {/* Left Column: Direct Call & Info */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <span className="text-xs uppercase tracking-widest font-bold px-3.5 py-1 rounded-full bg-[#00A2C9]/10 text-[#00A2C9] border border-[#00A2C9]/20">
+              <span className="text-xs uppercase tracking-widest font-black px-4 py-1.5 rounded-full bg-[#00A2C9]/10 text-[#00A2C9] border border-[#00A2C9]/20 inline-block">
                 Contact Us
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mt-4 tracking-tight leading-tight text-gray-900">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mt-4 tracking-tight leading-tight text-gray-950">
                 Send Us Your <br />
-                <span className="text-gradient-cyan">Bright Ideas</span>
+                <span className="relative inline-block text-[#00A2C9]">
+                  Bright Ideas
+                  <StyledUnderline color="#00A2C9" variant="curve" />
+                </span>
               </h2>
               <p className="text-gray-600 text-sm sm:text-base mt-4 leading-relaxed font-normal">
                 Whether you are planning a corporate conference, a wedding gala, require trained event staff, print marketing, or property care—we are ready to deliver.

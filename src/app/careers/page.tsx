@@ -19,6 +19,8 @@ import {
 import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/Button';
 
+import { StyledUnderline } from '@/components/ui/StyledUnderline';
+
 type RoleId = 'usher' | 'host' | 'coordinator';
 
 interface JobRole {
@@ -40,7 +42,7 @@ const jobRoles: JobRole[] = [
     icon: IdCard,
     overview:
       'As an Event Usher at Zendel Events, you will be the first point of contact for guests, ensuring a smooth, organised, and welcoming experience at events.',
-    image: 'https://zendelserviceslimited.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-25-at-14.36.45-1.jpeg',
+    image: '/collective-ushers.jpg',
     responsibilities: [
       'Welcome and direct guests professionally',
       'Manage seating arrangements',
@@ -63,7 +65,7 @@ const jobRoles: JobRole[] = [
     icon: Mic,
     overview:
       'As an Event Host, you will engage with guests, manage event flow, and ensure a high-quality experience throughout the event.',
-    image: 'https://zendelserviceslimited.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-25-at-14.36.45-6.jpeg',
+    image: '/collective-fashion.jpg',
     responsibilities: [
       'Welcome and engage guests',
       'Make announcements when required',
@@ -86,7 +88,7 @@ const jobRoles: JobRole[] = [
     icon: ClipboardCheck,
     overview:
       'Event Coordinators oversee the smooth execution of events, ensuring everything runs according to plan.',
-    image: 'https://zendelserviceslimited.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-25-at-14.36.45-8.jpeg',
+    image: '/artisan-event-planner.jpg',
     responsibilities: [
       'Manage event timelines and schedules',
       'Coordinate with vendors and staff',
@@ -111,28 +113,35 @@ export default function CareersPage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-[420px] h-[55vh] flex items-center justify-center text-center bg-slate-950 text-white overflow-hidden border-b border-white/10">
+      {/* Hero Section with Dark Luxury Overlay */}
+      <section className="relative min-h-[440px] flex items-center justify-center text-center bg-slate-950 text-white overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://zendelserviceslimited.com/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-25-at-14.36.45-8.jpeg"
+            src="/collective-ushers.jpg"
             alt="Zendel Careers Background"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-25"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-900/60" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] bg-[#b92f8d]/20 blur-[130px] rounded-full pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-900/60" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[300px] bg-[#00A2C9]/20 blur-[130px] rounded-full pointer-events-none" />
         </div>
 
-        <Container className="relative z-10 py-12 max-w-4xl mx-auto space-y-5">
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight drop-shadow-md">
-            Zendel Events
+        <Container className="relative z-10 py-16 max-w-4xl mx-auto space-y-5">
+          <span className="text-xs uppercase tracking-widest font-black px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-[#09BAF4] border border-white/20 inline-block shadow-lg">
+            Join Our Team
+          </span>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.15]">
+            Career &amp; Staffing{' '}
+            <span className="relative inline-block text-[#09BAF4]">
+              Opportunities
+              <StyledUnderline color="#09BAF4" variant="curve" />
+            </span>
           </h1>
 
-          <p className="text-base sm:text-xl text-slate-300 font-light max-w-2xl mx-auto leading-relaxed">
-            Join our elite team and deliver unforgettable experiences. We are looking for passionate individuals for our upcoming premium events.
+          <p className="text-base sm:text-xl text-slate-300 font-normal max-w-2xl mx-auto leading-relaxed">
+            Join our elite team and deliver unforgettable event experiences. We are looking for passionate individuals for our upcoming premium events.
           </p>
 
-          <div className="flex items-center justify-center space-x-1 text-[#d844a9] pt-2">
+          <div className="flex items-center justify-center space-x-1 text-[#ff6900] pt-2">
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="w-5 h-5 fill-current" />
             ))}

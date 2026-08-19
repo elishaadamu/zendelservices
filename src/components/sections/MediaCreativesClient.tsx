@@ -28,6 +28,7 @@ import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import { ArtisanEnquiryForm } from '@/components/forms/ArtisanEnquiryForm';
+import { StyledUnderline } from '@/components/ui/StyledUnderline';
 
 /* ─────────────────────────────────────────────
    DATA (Using Authentic Local Gallery Images)
@@ -256,8 +257,13 @@ export const MediaCreativesClient: React.FC = () => {
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
                   THE ZENDEL CREATIVES TEAM
                 </p>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08]">
-                  Every detail. <span className="text-[#09BAF4]">Every interaction.</span> <br className="hidden sm:block" />
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15]">
+                  Every detail.{' '}
+                  <span className="relative inline-block text-[#09BAF4]">
+                    Every interaction.
+                    <StyledUnderline color="#09BAF4" variant="curve" />
+                  </span>{' '}
+                  <br className="hidden sm:block" />
                   Every moment.
                 </h1>
               </div>

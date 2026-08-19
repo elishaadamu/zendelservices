@@ -9,6 +9,8 @@ import { SectionHeading } from "../ui/SectionHeading";
 import { Button } from "../ui/Button";
 import { Modal } from "../ui/Modal";
 
+import { StyledUnderline } from "../ui/StyledUnderline";
+
 const INITIAL_VISIBLE_COUNT = 16;
 
 export const EventGallerySection: React.FC = () => {
@@ -24,14 +26,24 @@ export const EventGallerySection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-white text-gray-900">
+    <section className="py-24 bg-white text-gray-900 border-b border-gray-200">
       <Container>
-        <SectionHeading
-          subtitle="Event & Project Gallery"
-          title="Capturing Perfection & Signature Style"
-          description="Browse through past weddings, corporate summits, ushering teams, print branding works, and property maintenance projects."
-          theme="light"
-        />
+        {/* Creative Section Heading with Styled Underline */}
+        <div className="flex flex-col items-center text-center mb-16 max-w-4xl mx-auto space-y-3">
+          <span className="text-xs uppercase tracking-widest font-black px-4 py-1.5 rounded-full bg-[#00A2C9]/10 text-[#00A2C9] border border-[#00A2C9]/20 inline-block">
+            Event &amp; Project Gallery
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-black text-gray-950 tracking-tight leading-tight">
+            Capturing Perfection &amp;{' '}
+            <span className="relative inline-block text-[#00A2C9]">
+              Signature Style
+              <StyledUnderline color="#00A2C9" variant="curve" />
+            </span>
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl font-normal leading-relaxed">
+            Browse through past weddings, corporate summits, ushering teams, print branding works, and property maintenance projects.
+          </p>
+        </div>
 
         {/* Ultra-Compact Responsive Gallery Grid */}
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2.5 sm:gap-3">
