@@ -360,178 +360,186 @@ export const MediaCreativesClient: React.FC = () => {
       {/* ── MEET THE INDIVIDUALS (DYNAMIC ARTISANS PROFILES) ──────────────────── */}
       <section id="the-artisans" className="py-24 bg-slate-50 border-b border-gray-200">
         <Container>
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-black uppercase text-[#6747ee] tracking-widest px-4 py-1.5 rounded-full bg-[#6747ee]/10 border border-[#6747ee]/20 inline-block">
-              MEET THE INDIVIDUALS
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-gray-950 tracking-tight">
-              The Artisans Behind the{' '}
-              <span className="relative inline-block text-[#00A2C9]">
-                Experience
-                <StyledUnderline color="#00A2C9" variant="curve" />
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
+            <div className="space-y-4 max-w-2xl">
+              <span className="text-xs font-black uppercase text-[#6747ee] tracking-widest px-4 py-1.5 rounded-full bg-[#6747ee]/10 border border-[#6747ee]/20 inline-block">
+                MEET THE INDIVIDUALS
               </span>
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
-              Every profile within The Zendel Creatives Team represents a distinctive talent, perspective, and contribution to the collective. Hire individuals directly for your specific event task.
-            </p>
+              <h2 className="text-3xl sm:text-5xl font-black text-gray-950 tracking-tight">
+                The Artisans Behind the{' '}
+                <span className="relative inline-block text-[#00A2C9]">
+                  Experience
+                  <StyledUnderline color="#00A2C9" variant="curve" />
+                </span>
+              </h2>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
+                Every profile within The Zendel Creatives Team represents a distinctive talent, perspective, and verified contribution to the collective.
+              </p>
+            </div>
 
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap items-center justify-center gap-2 pt-6">
-              {categoriesList.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-xs font-black transition-all ${
-                    selectedCategory === cat
-                      ? 'bg-[#00A2C9] text-white shadow-md'
-                      : 'bg-white text-gray-700 border border-gray-200 hover:bg-slate-100'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
+            {/* Top of Section Actions: ENQUIRE HERE & Register */}
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={() => handleOpenModal('Zendel Verified Artisans Roster', 'Customized Creative Collective')}
+                className="px-7 py-4 rounded-2xl bg-[#ff6900] hover:bg-[#e05d00] text-white font-black text-sm uppercase tracking-wider shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center space-x-2"
+              >
+                <Mail className="w-4 h-4" />
+                <span>Enquire Here</span>
+              </button>
+
+              <button
+                onClick={() => setRegisterModalOpen(true)}
+                className="px-5 py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-black text-xs uppercase tracking-wider shadow-md transition-all flex items-center space-x-2"
+              >
+                <Sparkles className="w-4 h-4 text-[#09BAF4]" />
+                <span>Register as Artisan</span>
+              </button>
             </div>
           </div>
 
-          {/* Full Artisan Profiles Showcase (8-Field Cards) */}
-          <div className="space-y-12">
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap items-center justify-start sm:justify-center gap-2 mb-12">
+            {categoriesList.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 py-2 rounded-full text-xs font-black transition-all ${
+                  selectedCategory === cat
+                    ? 'bg-[#00A2C9] text-white shadow-md'
+                    : 'bg-white text-gray-700 border border-gray-200 hover:bg-slate-100'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Full Artisan Profiles Showcase (Clean Numbered Image-Free Cards with Portfolio and No Connect Button) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {loadingArtisans ? (
-              <div className="p-16 text-center text-gray-400 font-bold">Loading artisan profiles...</div>
+              <div className="col-span-2 p-16 text-center text-gray-400 font-bold">Loading artisan profiles...</div>
             ) : filteredArtisans.length === 0 ? (
-              <div className="p-16 text-center text-gray-500 bg-white rounded-3xl border border-gray-200 italic">
+              <div className="col-span-2 p-16 text-center text-gray-500 bg-white rounded-3xl border border-gray-200 italic">
                 No verified artisans found in this category yet.
               </div>
             ) : (
-              filteredArtisans.map((artisan, index) => (
-                <div
-                  key={artisan.id || index}
-                  className="rounded-3xl bg-white border border-slate-200/90 shadow-xl overflow-hidden group hover:border-[#00A2C9] transition-all duration-300"
-                >
-                  <div className="grid grid-cols-1 lg:grid-cols-12">
-                    {/* Left Column: Photo & Direct Booking CTA */}
-                    <div className="lg:col-span-4 bg-slate-950 text-white relative flex flex-col justify-between p-8">
-                      <div className="space-y-6">
-                        <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-slate-900">
-                          <img
-                            src={artisan.image || '/artisan-event-planner.jpg'}
-                            alt={artisan.name}
-                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                          />
-                          <div className="absolute top-3 left-3 bg-white/90 text-gray-950 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-md">
+              filteredArtisans.map((artisan, index) => {
+                const numStr = String(index + 1).padStart(2, '0');
+                return (
+                  <div
+                    key={artisan.id || index}
+                    className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 relative"
+                  >
+                    <div className="space-y-5">
+                      {/* Top Bar: Numeral, Pillar & Verified Badge */}
+                      <div className="flex items-center justify-between">
+                        <span className="font-serif text-3xl font-black text-slate-200 group-hover:text-[#00A2C9]/30 transition-colors">
+                          {numStr}
+                        </span>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
                             {artisan.category}
-                          </div>
-                          <div className="absolute top-3 right-3 bg-emerald-500 text-white px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider flex items-center space-x-1 shadow-md">
-                            <ShieldCheck className="w-3 h-3" />
-                            <span>VERIFIED</span>
-                          </div>
-                        </div>
-
-                        <div>
-                          <h3 className="text-2xl font-black text-white">{artisan.name}</h3>
-                          <p className="text-sm font-bold text-[#09BAF4] mt-1">{artisan.title}</p>
-                          <div className="flex items-center space-x-2 text-xs text-slate-300 mt-2 font-medium">
-                            <MapPin className="w-3.5 h-3.5 text-[#00A2C9]" />
-                            <span>{artisan.city}, {artisan.country}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Connect / Enquire CTA Button */}
-                      <div className="pt-6 border-t border-white/10 space-y-3">
-                        <button
-                          onClick={() => handleOpenModal(artisan.name, artisan.title)}
-                          className="w-full py-3.5 px-5 rounded-2xl bg-[#ff6900] hover:bg-[#e05d00] text-white font-black text-xs uppercase tracking-wider shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2"
-                        >
-                          <Mail className="w-4 h-4" />
-                          <span>Connect / Enquire →</span>
-                        </button>
-                        {artisan.portfolio && (
-                          <a
-                            href={artisan.portfolio}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="w-full py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center justify-center space-x-1.5 transition-colors"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            <span>View Portfolio</span>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Right Column: Complete 8-Field Showcase */}
-                    <div className="lg:col-span-8 p-8 sm:p-10 space-y-6 flex flex-col justify-between">
-                      <div className="space-y-5">
-                        {/* 1. About */}
-                        <div className="space-y-1">
-                          <span className="text-[10px] font-black uppercase tracking-widest text-[#00A2C9] block">
-                            *About* (Creative Identity &amp; Approach)
                           </span>
-                          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-normal">
-                            {artisan.about}
+                          <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-black uppercase tracking-wider">
+                            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                            <span>VERIFIED</span>
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Name & Title */}
+                      <div>
+                        <h3 className="text-2xl font-black text-gray-950 group-hover:text-[#00A2C9] transition-colors leading-snug">
+                          {artisan.name}
+                        </h3>
+                        <p className="text-sm font-bold text-[#00A2C9] mt-0.5">
+                          {artisan.title}
+                        </p>
+                        <div className="flex items-center space-x-1.5 text-xs text-gray-500 font-semibold mt-2">
+                          <MapPin className="w-3.5 h-3.5 text-[#ff6900]" />
+                          <span>{artisan.city}, {artisan.country}</span>
+                        </div>
+                      </div>
+
+                      {/* About */}
+                      <div className="space-y-1 pt-3 border-t border-slate-100">
+                        <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
+                          *About* (Creative Identity &amp; Approach)
+                        </span>
+                        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-normal">
+                          {artisan.about}
+                        </p>
+                      </div>
+
+                      {/* Expertise & Signature Style */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
+                            *Expertise*
+                          </span>
+                          <p className="text-xs font-bold text-gray-900 leading-snug">
+                            {artisan.expertise}
                           </p>
                         </div>
 
-                        {/* 2. Expertise & 3. Signature Style (2-Col Grid) */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
-                            <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
-                              *Expertise* (Key Services &amp; Skills)
-                            </span>
-                            <p className="text-xs sm:text-sm font-bold text-gray-900 leading-snug">
-                              {artisan.expertise}
-                            </p>
-                          </div>
-
-                          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
-                            <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
-                              *Signature Style*
-                            </span>
-                            <p className="text-xs sm:text-sm font-bold text-gray-900 leading-snug">
-                              {artisan.signatureStyle || 'Bespoke tailoring, meticulous precision, and unforgettable aesthetics.'}
-                            </p>
-                          </div>
+                        <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
+                            *Signature Style*
+                          </span>
+                          <p className="text-xs font-bold text-gray-900 leading-snug">
+                            {artisan.signatureStyle || 'Bespoke precision, luxury aesthetics, and seamless execution.'}
+                          </p>
                         </div>
+                      </div>
 
-                        {/* 4. Experience & Credentials */}
-                        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1">
+                      {/* Experience & Credentials */}
+                      {artisan.experienceCredentials && (
+                        <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-1">
                           <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 block">
                             *Experience &amp; Credentials*
                           </span>
-                          <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium">
-                            {artisan.experienceCredentials || 'Verified experience with premier European and international galas.'}
+                          <p className="text-xs text-gray-700 leading-relaxed font-medium">
+                            {artisan.experienceCredentials}
                           </p>
                         </div>
+                      )}
 
-                        {/* 5. Zendel Creatives Role */}
-                        <div className="p-4 rounded-2xl bg-cyan-50/50 border border-cyan-100 space-y-1">
+                      {/* Zendel Creatives Role */}
+                      {artisan.zendelRole && (
+                        <div className="p-3.5 rounded-2xl bg-cyan-50/40 border border-cyan-100/60 space-y-1">
                           <span className="text-[10px] font-black uppercase tracking-wider text-[#00A2C9] block">
                             *Zendel Creatives Role*
                           </span>
-                          <p className="text-xs sm:text-sm text-gray-800 leading-relaxed font-semibold">
-                            {artisan.zendelRole || 'Contributes specialist craft, high luxury standards, and seamless on-site excellence.'}
+                          <p className="text-xs text-gray-800 leading-relaxed font-semibold">
+                            {artisan.zendelRole}
                           </p>
                         </div>
-                      </div>
+                      )}
+                    </div>
 
-                      {/* Footer Hire CTA Line */}
-                      <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-gray-500">
-                        <div className="flex items-center space-x-2">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                          <span>Direct hiring &amp; customized task coordination via Zendel concierge</span>
-                        </div>
-                        <button
-                          onClick={() => handleOpenModal(artisan.name, artisan.title)}
-                          className="font-black text-[#00A2C9] hover:underline underline-offset-4 flex items-center space-x-1 self-start sm:self-auto"
+                    {/* Card Footer: Portfolio Link Only (No Connect Button) */}
+                    <div className="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                      {artisan.portfolio ? (
+                        <a
+                          href={artisan.portfolio}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center space-x-1.5 text-xs font-black text-[#00A2C9] hover:underline underline-offset-4"
                         >
-                          <span>Enquire to hire this artisan</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          <span>*Portfolio* (View Showcase)</span>
+                        </a>
+                      ) : (
+                        <span className="text-[11px] font-bold text-gray-400">Portfolio via Zendel Collective</span>
+                      )}
+
+                      <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                        Zendel Verified Roster
+                      </span>
                     </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
 
