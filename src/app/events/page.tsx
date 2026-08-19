@@ -38,22 +38,21 @@ export default function EventsPage() {
     <>
       {/* Hero Header with Background Image */}
       <section className="relative min-h-[450px] h-[55vh] flex items-center justify-center text-center bg-slate-950 text-white overflow-hidden border-b border-white/10">
-        {/* Background Image & Gradient Overlay */}
+        {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80"
+            src="/gallery/IMG-20260602-WA0009.jpg"
             alt="Event Organisation & Management Background"
-            className="w-full h-full object-cover opacity-35"
+            className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-900/60" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00A2C9]/20 blur-[130px] rounded-full pointer-events-none" />
+          <div className="absolute inset-0 bg-slate-950/70" />
         </div>
 
         <Container className="relative z-10 py-12 max-w-4xl mx-auto space-y-4">
           <span className="text-xs uppercase tracking-widest font-extrabold px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-[#09BAF4] border border-white/20 inline-block shadow-lg">
             ZENDEL EVENTS
           </span>
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight drop-shadow-md">
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
             Event Organisation &amp; Management
           </h1>
           <p className="text-lg sm:text-2xl text-[#09BAF4] font-bold italic max-w-3xl mx-auto leading-relaxed">
@@ -65,15 +64,12 @@ export default function EventsPage() {
       {/* INTRODUCTION SECTION */}
       <section className="py-16 bg-white border-b border-gray-200">
         <Container>
-          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white rounded-3xl p-8 sm:p-14 shadow-2xl relative overflow-hidden text-center max-w-5xl mx-auto space-y-6">
-            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#00A2C9] via-[#6747ee] to-[#b92f8d]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-[#00A2C9]/20 blur-[120px] rounded-full pointer-events-none" />
-
+          <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-14 shadow-xl text-center max-w-5xl mx-auto space-y-6">
             <span className="text-xs uppercase font-extrabold tracking-widest text-[#09BAF4] px-4 py-1.5 rounded-full bg-[#00A2C9]/20 border border-[#00A2C9]/30 inline-block">
               INTRODUCTION
             </span>
 
-            <p className="text-lg sm:text-2xl text-gray-100 max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-lg sm:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed font-light">
               <strong className="text-white font-black">Zendel Events</strong> is a luxury provider of world-class corporate events and conferences, parties, traditional marriage and weddings, and other brand events. Based in the UK, planning creative celebrations worldwide. From venue searching to personal styling. We have got you covered.
             </p>
           </div>
@@ -84,12 +80,12 @@ export default function EventsPage() {
       <section className="py-20 bg-slate-50 border-b border-gray-200">
         <Container className="space-y-16">
           {/* Card 1: EVENT */}
-          <div className="bg-white rounded-3xl border border-gray-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group hover:border-[#00A2C9] transition-all">
+          <div className="bg-white rounded-3xl border border-gray-200 shadow-md hover:shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group transition-all">
             <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900">
               <img
-                src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80"
+                src="/gallery/IMG-20260602-WA0016.jpg"
                 alt="Event Logistics"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute top-4 left-4">
                 <span className="text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#00A2C9] text-white shadow-md">
@@ -114,7 +110,7 @@ export default function EventsPage() {
           </div>
 
           {/* Card 2: PARTIES */}
-          <div className="bg-white rounded-3xl border border-gray-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group hover:border-[#b92f8d] transition-all">
+          <div className="bg-white rounded-3xl border border-gray-200 shadow-md hover:shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group transition-all">
             <div className="lg:col-span-7 p-8 sm:p-12 space-y-4 order-2 lg:order-1">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 rounded-xl bg-[#b92f8d]/10 text-[#b92f8d] flex items-center justify-center font-bold">
@@ -128,9 +124,9 @@ export default function EventsPage() {
             </div>
             <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900 order-1 lg:order-2">
               <img
-                src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80"
+                src="/gallery/IMG-20260602-WA0031.jpg"
                 alt="Parties"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute top-4 left-4">
                 <span className="text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#b92f8d] text-white shadow-md">
@@ -141,12 +137,12 @@ export default function EventsPage() {
           </div>
 
           {/* Card 3: WEDDINGS */}
-          <div className="bg-white rounded-3xl border border-gray-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group hover:border-[#6747ee] transition-all">
+          <div className="bg-white rounded-3xl border border-gray-200 shadow-md hover:shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group transition-all">
             <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900">
               <img
-                src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
+                src="/gallery/IMG-20260602-WA0026.jpg"
                 alt="Weddings"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute top-4 left-4">
                 <span className="text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#6747ee] text-white shadow-md">
@@ -171,7 +167,7 @@ export default function EventsPage() {
           </div>
 
           {/* Card 4: TRADITIONAL MARRIAGE */}
-          <div className="bg-white rounded-3xl border border-gray-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group hover:border-[#ff6900] transition-all">
+          <div className="bg-white rounded-3xl border border-gray-200 shadow-md hover:shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group transition-all">
             <div className="lg:col-span-7 p-8 sm:p-12 space-y-4 order-2 lg:order-1">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 rounded-xl bg-[#ff6900]/10 text-[#ff6900] flex items-center justify-center font-bold">
@@ -185,9 +181,9 @@ export default function EventsPage() {
             </div>
             <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900 order-1 lg:order-2">
               <img
-                src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80"
+                src="/gallery/IMG-20260602-WA0011.jpg"
                 alt="Traditional Marriage"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute top-4 left-4">
                 <span className="text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#ff6900] text-white shadow-md">
@@ -198,12 +194,12 @@ export default function EventsPage() {
           </div>
 
           {/* Card 5: CORPORATE EVENTS */}
-          <div className="bg-white rounded-3xl border border-gray-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group hover:border-[#00A2C9] transition-all">
+          <div className="bg-white rounded-3xl border border-gray-200 shadow-md hover:shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group transition-all">
             <div className="lg:col-span-5 h-72 lg:h-full relative overflow-hidden bg-slate-900">
               <img
-                src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80"
+                src="/gallery/IMG-20260602-WA0041.jpg"
                 alt="Corporate Events"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute top-4 left-4">
                 <span className="text-xs font-extrabold uppercase tracking-widest px-3.5 py-1 rounded-full bg-[#00A2C9] text-white shadow-md">
@@ -242,7 +238,7 @@ export default function EventsPage() {
       {/* DRESS 2 IMPRESS FLAGSHIP SHOWCASE SECTION */}
       <section className="py-20 bg-white border-b border-gray-200">
         <Container>
-          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white rounded-3xl p-8 sm:p-14 shadow-2xl overflow-hidden relative">
+          <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-14 shadow-xl overflow-hidden relative">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               {/* Text Information */}
               <div className="lg:col-span-7 space-y-6">

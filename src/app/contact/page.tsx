@@ -17,12 +17,11 @@ export default function ContactPage() {
         {/* Background Image & Gradient Overlay */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80"
+            src="/gallery/IMG-20260602-WA0009.jpg"
             alt="Contact Zendel Services Limited Background"
-            className="w-full h-full object-cover opacity-35"
+            className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-900/60" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00A2C9]/20 blur-[130px] rounded-full pointer-events-none" />
+          <div className="absolute inset-0 bg-slate-950/70" />
         </div>
 
         <Container className="relative z-10 py-12 max-w-4xl mx-auto space-y-4">

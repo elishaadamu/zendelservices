@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 /* ─────────────────────────────────────────────
-   DATA
+   DATA (Using Authentic Local Gallery Images)
 ───────────────────────────────────────────── */
 const teamDepartments = [
   {
@@ -44,8 +44,7 @@ const teamDepartments = [
     description:
       'Our event planners and creative directors transform ideas, aspirations, and individual stories into beautifully considered celebrations. From the first concept to the final detail, they bring structure, creativity, precision, and imagination together to create experiences that feel effortless and extraordinary.',
     icon: Compass,
-    image:
-      'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80',
+    image: '/gallery/IMG-20260602-WA0009.jpg',
     accentBg: 'bg-[#00A2C9]/10',
     accentText: 'text-[#00A2C9]',
     accentBorder: 'border-[#00A2C9]',
@@ -59,8 +58,7 @@ const teamDepartments = [
     description:
       'From refined beauty and bespoke fashion to couture styling and immersive décor, our creative specialists ensure that every element feels intentional, harmonious, and unmistakably personal.',
     icon: Sparkles,
-    image:
-      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
+    image: '/gallery/IMG-20260602-WA0024.jpg',
     accentBg: 'bg-[#6747ee]/10',
     accentText: 'text-[#6747ee]',
     accentBorder: 'border-[#6747ee]',
@@ -74,8 +72,7 @@ const teamDepartments = [
     description:
       'Our photographers, filmmakers, and media creatives capture the emotion, atmosphere, beauty, and details that make every occasion unique—transforming fleeting moments into visual stories that can be remembered for years to come.',
     icon: Camera,
-    image:
-      'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80',
+    image: '/gallery/IMG-20260602-WA0029.jpg',
     accentBg: 'bg-[#ff6900]/10',
     accentText: 'text-[#ff6900]',
     accentBorder: 'border-[#ff6900]',
@@ -89,8 +86,7 @@ const teamDepartments = [
     description:
       'Exceptional hospitality is at the heart of an unforgettable event. From exquisite culinary experiences and signature cocktails to entertainment, hosting, and atmosphere, these artisans create the moments guests experience, enjoy, and remember.',
     icon: Wine,
-    image:
-      'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80',
+    image: '/gallery/IMG-20260602-WA0019.jpg',
     accentBg: 'bg-emerald-500/10',
     accentText: 'text-emerald-600',
     accentBorder: 'border-emerald-600',
@@ -104,8 +100,7 @@ const teamDepartments = [
     description:
       'Behind a seamless experience is a team dedicated to comfort, coordination, discretion, and safety. Our ushers, concierge professionals, and security specialists ensure every guest is welcomed, supported, and protected throughout the occasion.',
     icon: ShieldCheck,
-    image:
-      'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80',
+    image: '/gallery/IMG-20260602-WA0010.jpg',
     accentBg: 'bg-sky-500/10',
     accentText: 'text-sky-600',
     accentBorder: 'border-sky-600',
@@ -119,96 +114,84 @@ const collectiveCategories = [
     description:
       'Visionary planners and creative directors who transform concepts into flawlessly executed experiences.',
     icon: Compass,
-    image:
-      'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80',
+    image: '/gallery/IMG-20260602-WA0009.jpg',
   },
   {
     title: 'Makeup Artistry',
     description:
       'Elite beauty professionals creating refined, timeless looks tailored to each individual and occasion.',
     icon: Sparkles,
-    image:
-      'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80',
+    image: '/gallery/IMG-20260602-WA0024.jpg',
   },
   {
     title: 'Photography & Videography',
     description:
       'Visual storytellers capturing the emotion, atmosphere, and unforgettable details of every celebration.',
     icon: Camera,
-    image:
-      'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80',
+    image: '/gallery/IMG-20260602-WA0029.jpg',
   },
   {
     title: 'Hairstyling & Beauty Design',
     description:
       'Creative specialists delivering elegant and sophisticated styling that completes every vision.',
     icon: Scissors,
-    image:
-      'https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=600&q=80',
+    image: '/gallery/IMG-20260602-WA0034.jpg',
   },
   {
     title: 'Couture Fashion & Styling',
     description:
       'Designers and stylists creating bespoke looks that reflect individuality, elegance, and luxury.',
     icon: Palette,
-    image:
-      'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80',
+    image: '/gallery/IMG-20260602-WA0014.jpg',
   },
   {
     title: 'Bespoke Décor & Event Design',
     description:
       "Creative designers transforming venues into immersive environments where every detail reflects the occasion's unique story.",
     icon: Sparkles,
-    image:
-      'https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=600&q=80',
+    image: '/gallery/IMG-20260602-WA0011.jpg',
   },
   {
     title: 'Luxury Catering & Culinary Experiences',
     description:
       'Exceptional culinary artisans delivering memorable dining experiences through exquisite presentation and service.',
     icon: Utensils,
-    image:
-      'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=600&q=80',
+    image: '/gallery/IMG-20260602-WA0038.jpg',
   },
   {
     title: 'Cocktail Mixology & Beverage Experiences',
     description:
       'Expert mixologists creating bespoke cocktail experiences, signature drinks, and elevated beverage concepts.',
     icon: Wine,
-    image:
-      'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80',
+    image: '/gallery/IMG-20260602-WA0019.jpg',
   },
   {
     title: 'Entertainment & Event Experiences',
     description:
       'Hosts, DJs, performers, and experience creators who bring energy, emotion, and unforgettable moments.',
     icon: Music,
-    image:
-      'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80',
+    image: '/gallery/IMG-20260602-WA0041.jpg',
   },
   {
     title: 'Event Ushers & Guest Experience Specialists',
     description:
       'Professional hospitality teams ensuring guests receive a warm, seamless, and refined experience.',
     icon: Users,
-    image:
-      'https://zendelserviceslimited.com/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-02-at-21.11.36.jpeg',
+    image: '/gallery/IMG-20260602-WA0010.jpg',
   },
   {
     title: 'Event Security & Safety Personnel',
     description:
       'Highly trained security professionals providing discreet protection, guest safety, and peace of mind.',
     icon: ShieldCheck,
-    image:
-      'https://images.unsplash.com/photo-1508847154043-be5407fcaa5a?auto=format&fit=crop&w=600&q=80',
+    image: '/gallery/IMG-20260602-WA0025.jpg',
   },
   {
     title: 'Media & Brand Presence',
     description:
       'Creative media professionals capturing, promoting, and amplifying exceptional moments through strategic storytelling.',
     icon: Megaphone,
-    image:
-      'https://zendelserviceslimited.com/wp-content/uploads/2026/06/TP-015-scaled.jpg',
+    image: '/gallery/IMG-20260602-WA0049.jpg',
   },
 ];
 
@@ -236,55 +219,50 @@ const teaseCards = [
     dept: 'Creative Vision',
     role: 'Lead Event Planner & Creative Director',
     accentHex: '#00A2C9',
-    img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80',
+    img: '/gallery/IMG-20260602-WA0014.jpg',
   },
   {
     dept: 'Beauty & Presentation',
     role: 'Senior Makeup Artist & Beauty Specialist',
     accentHex: '#6747ee',
-    img: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=400&q=80',
+    img: '/gallery/IMG-20260602-WA0024.jpg',
   },
   {
     dept: 'Memories & Storytelling',
     role: 'Lead Photographer & Visual Storyteller',
     accentHex: '#ff6900',
-    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    img: '/gallery/IMG-20260602-WA0029.jpg',
   },
 ];
 
 /* ─────────────────────────────────────────────
-   PAGE
+   PAGE (Clean, Solid Custom Styling)
 ───────────────────────────────────────────── */
 export default function MediaCreativesPage() {
   return (
     <>
-      {/* ── HERO ──────────────────────────────────── */}
-      <section className="relative bg-gradient-to-br from-[#f8fafc] via-[#edf7fc] to-[#f0f4ff] py-20 sm:py-28 border-b border-gray-200 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#00A2C9]/5 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#6747ee]/5 blur-3xl pointer-events-none" />
-
+      {/* ── HERO (Solid Modern Layout) ──────────────────────────────────── */}
+      <section className="relative bg-slate-900 text-white py-20 sm:py-28 border-b border-slate-800 overflow-hidden">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Text */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <span className="text-xs uppercase tracking-widest font-extrabold px-4 py-1.5 rounded-full bg-[#00A2C9]/10 text-[#00A2C9] border border-[#00A2C9]/20 inline-block">
+              <span className="text-xs uppercase tracking-widest font-extrabold px-4 py-1.5 rounded-full bg-[#00A2C9]/20 text-[#09BAF4] border border-[#00A2C9]/30 inline-block">
                 ZENDEL CREATIVES
               </span>
               <div>
-                <p className="text-sm font-bold text-[#6747ee] uppercase tracking-widest mb-2">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
                   THE ZENDEL CREATIVES TEAM
                 </p>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-gray-900 leading-[1.08]">
-                  Every detail.{' '}
-                  <span className="text-gradient-cyan">Every interaction.</span>{' '}
-                  <br className="hidden sm:block" />
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08]">
+                  Every detail. <span className="text-[#09BAF4]">Every interaction.</span> <br className="hidden sm:block" />
                   Every moment.
                 </h1>
               </div>
-              <p className="text-base sm:text-xl text-[#00A2C9] font-bold italic">
+              <p className="text-base sm:text-xl text-[#09BAF4] font-bold italic">
                 Where artistry meets elegance. Where every detail becomes a masterpiece.
               </p>
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
                 Behind every extraordinary Zendel Creatives experience is a carefully selected
                 team of exceptional individuals — the planners, beauty specialists, designers,
                 storytellers, hospitality professionals, and guest-experience specialists who
@@ -294,52 +272,52 @@ export default function MediaCreativesPage() {
                 <Button href="#the-team" variant="primary" size="lg" icon={<ArrowRight className="w-5 h-5" />}>
                   Meet the Team
                 </Button>
-                <Button href="/contact?subject=Join+The+Collective" variant="outline" size="lg">
+                <Button href="/contact?subject=Join+The+Collective" variant="dark" size="lg">
                   Join the Collective
                 </Button>
               </div>
             </div>
 
-            {/* Image mosaic */}
+            {/* Image mosaic (Real gallery photos) */}
             <div className="lg:col-span-5 relative">
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-2xl overflow-hidden shadow-xl h-48 sm:h-56">
+                <div className="rounded-2xl overflow-hidden border border-white/10 h-48 sm:h-56">
                   <img
-                    src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80"
-                    alt="Luxury Event Celebration"
+                    src="/gallery/IMG-20260602-WA0009.jpg"
+                    alt="Zendel Flagship Event"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
-                <div className="rounded-2xl overflow-hidden shadow-xl h-48 sm:h-56 mt-6">
+                <div className="rounded-2xl overflow-hidden border border-white/10 h-48 sm:h-56 mt-6">
                   <img
-                    src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=600&q=80"
-                    alt="Event Atmosphere"
+                    src="/gallery/IMG-20260602-WA0014.jpg"
+                    alt="Zendel Creative Direction"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
-                <div className="rounded-2xl overflow-hidden shadow-xl h-36 sm:h-44">
+                <div className="rounded-2xl overflow-hidden border border-white/10 h-36 sm:h-44">
                   <img
-                    src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80"
-                    alt="Photography"
+                    src="/gallery/IMG-20260602-WA0029.jpg"
+                    alt="Cinematic Visuals"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
-                <div className="rounded-2xl overflow-hidden shadow-xl h-36 sm:h-44 -mt-6">
+                <div className="rounded-2xl overflow-hidden border border-white/10 h-36 sm:h-44 -mt-6">
                   <img
-                    src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80"
-                    alt="Makeup Artistry"
+                    src="/gallery/IMG-20260602-WA0024.jpg"
+                    alt="Beauty & Presentation"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>
               {/* Floating badge */}
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-2xl px-5 py-3 border border-gray-100 flex items-center space-x-3">
-                <div className="w-9 h-9 rounded-full bg-[#ff6900]/10 flex items-center justify-center">
+              <div className="absolute -bottom-4 -left-4 bg-slate-800 text-white rounded-2xl shadow-2xl px-5 py-3 border border-white/10 flex items-center space-x-3">
+                <div className="w-9 h-9 rounded-full bg-[#ff6900]/20 flex items-center justify-center">
                   <Star className="w-5 h-5 text-[#ff6900]" />
                 </div>
                 <div>
-                  <p className="text-xs font-black text-gray-900">Exclusive Collective</p>
-                  <p className="text-[10px] text-gray-500">Premier Artisans Only</p>
+                  <p className="text-xs font-black">Exclusive Collective</p>
+                  <p className="text-[10px] text-slate-400">Premier Artisans Only</p>
                 </div>
               </div>
             </div>
@@ -369,7 +347,7 @@ export default function MediaCreativesPage() {
               return (
                 <div
                   key={dept.id}
-                  className="group rounded-3xl bg-white border border-gray-200 shadow-lg hover:shadow-2xl hover:border-gray-300 transition-all duration-500 overflow-hidden"
+                  className="group rounded-3xl bg-white border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12">
                     {/* Image */}
@@ -381,12 +359,12 @@ export default function MediaCreativesPage() {
                       <img
                         src={dept.image}
                         alt={dept.category}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-black/20" />
                       <div className="absolute bottom-5 left-5">
                         <div
-                          className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-white/95 border-2 ${dept.accentBorder} shadow-xl`}
+                          className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-white border-2 ${dept.accentBorder} shadow-lg`}
                         >
                           <DeptIcon className={`w-6 h-6 ${dept.accentText}`} />
                         </div>
@@ -452,8 +430,8 @@ export default function MediaCreativesPage() {
           </div>
 
           {/* Profile card anatomy */}
-          <div className="bg-white rounded-3xl border border-gray-200 shadow-xl overflow-hidden mb-12">
-            <div className="p-6 sm:p-8 border-b border-gray-100 bg-gradient-to-r from-slate-50 to-white">
+          <div className="bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden mb-12">
+            <div className="p-6 sm:p-8 border-b border-gray-100 bg-slate-100">
               <p className="text-xs uppercase font-extrabold text-[#00A2C9] tracking-widest mb-1">
                 Every Artisan Profile Includes
               </p>
@@ -480,27 +458,25 @@ export default function MediaCreativesPage() {
             </div>
           </div>
 
-          {/* Teaser artisan cards */}
+          {/* Teaser artisan cards with real photos */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             {teaseCards.map((card, i) => (
               <div
                 key={i}
-                className="rounded-3xl bg-white border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
+                className="rounded-3xl bg-white border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group"
               >
-                <div className="relative h-52 overflow-hidden bg-slate-100">
+                <div className="relative h-56 overflow-hidden bg-slate-900">
                   <img
                     src={card.img}
                     alt={card.role}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute inset-0 bg-black/20" />
                   <div className="absolute bottom-4 left-4">
                     <span
-                      className="text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full"
+                      className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-white/90 shadow-md"
                       style={{
-                        background: `${card.accentHex}20`,
                         color: card.accentHex,
-                        border: `1px solid ${card.accentHex}40`,
                       }}
                     >
                       {card.dept}
@@ -571,16 +547,15 @@ export default function MediaCreativesPage() {
               return (
                 <div
                   key={index}
-                  className="rounded-3xl bg-white border border-gray-200 shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group"
+                  className="rounded-3xl bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col group"
                 >
                   <div className="relative h-48 overflow-hidden bg-slate-900">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-white/95 text-[#00A2C9] flex items-center justify-center shadow-lg backdrop-blur-md">
+                    <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-white text-[#00A2C9] flex items-center justify-center shadow-lg">
                       <IconComp className="w-5 h-5" />
                     </div>
                   </div>
@@ -600,16 +575,7 @@ export default function MediaCreativesPage() {
       </section>
 
       {/* ── JOIN THE COLLECTIVE ───────────────────── */}
-      <section className="py-28 bg-gradient-to-br from-slate-900 via-[#0a0514] to-indigo-950 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <img
-            src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=80"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[#00A2C9]/10 blur-3xl pointer-events-none" />
-
+      <section className="py-24 bg-slate-900 text-white border-b border-slate-800 relative overflow-hidden">
         <Container className="relative z-10 text-center max-w-4xl mx-auto space-y-8">
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#00A2C9]/20 border border-[#00A2C9]/40 text-[#09BAF4] text-xs font-bold uppercase tracking-widest">
             <HeartHandshake className="w-4 h-4" />
@@ -617,11 +583,10 @@ export default function MediaCreativesPage() {
           </div>
 
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-            Join an Exclusive{' '}
-            <span className="text-gradient-cyan">Creative Community</span>
+            Join an Exclusive <span className="text-[#09BAF4]">Creative Community</span>
           </h2>
 
-          <p className="text-base sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
             Zendel Creatives is built for exceptional talent that values quality,
             professionalism, creativity, and innovation. By becoming part of our collective,
             you gain the opportunity to collaborate with like-minded creatives, participate in
@@ -657,13 +622,13 @@ export default function MediaCreativesPage() {
               return (
                 <div
                   key={i}
-                  className="rounded-2xl bg-white/5 border border-white/10 p-6 space-y-3 hover:bg-white/10 transition-colors"
+                  className="rounded-2xl bg-slate-800 border border-slate-700 p-6 space-y-3 hover:border-[#00A2C9] transition-colors"
                 >
                   <div className="w-10 h-10 rounded-xl bg-[#00A2C9]/20 flex items-center justify-center">
                     <PIcon className="w-5 h-5 text-[#09BAF4]" />
                   </div>
                   <p className="text-base font-black text-white">{p.title}</p>
-                  <p className="text-sm text-gray-400 leading-relaxed">{p.desc}</p>
+                  <p className="text-sm text-slate-300 leading-relaxed">{p.desc}</p>
                 </div>
               );
             })}
@@ -715,36 +680,33 @@ export default function MediaCreativesPage() {
             </div>
 
             {/* Promise */}
-            <div className="rounded-3xl bg-gradient-to-br from-slate-900 to-[#0a0514] text-white border border-white/10 shadow-2xl p-10 space-y-6 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-[#00A2C9]/10 blur-2xl pointer-events-none" />
-              <div className="relative z-10 space-y-6">
-                <span className="text-xs uppercase font-extrabold text-[#09BAF4] tracking-widest block">
-                  Our Promise
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-black leading-snug">
-                  Transforming Moments Into Timeless Memories
-                </h3>
-                <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                  Every celebration carries a story. Our role is to bring that story to life
-                  through creativity, craftsmanship, collaboration, and unforgettable execution.
-                  From the first idea to the final farewell, Zendel Creatives brings together
-                  exceptional people who believe that extraordinary experiences are created
-                  through extraordinary attention to detail.
+            <div className="rounded-3xl bg-slate-900 text-white border border-slate-800 shadow-xl p-10 space-y-6">
+              <span className="text-xs uppercase font-extrabold text-[#09BAF4] tracking-widest block">
+                Our Promise
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-black leading-snug">
+                Transforming Moments Into Timeless Memories
+              </h3>
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                Every celebration carries a story. Our role is to bring that story to life
+                through creativity, craftsmanship, collaboration, and unforgettable execution.
+                From the first idea to the final farewell, Zendel Creatives brings together
+                exceptional people who believe that extraordinary experiences are created
+                through extraordinary attention to detail.
+              </p>
+              <blockquote className="border-l-4 border-[#00A2C9] pl-5">
+                <p className="text-base font-bold text-white italic">
+                  &ldquo;Together, we create extraordinary experiences where elegance meets
+                  imagination.&rdquo;
                 </p>
-                <blockquote className="border-l-4 border-[#00A2C9] pl-5">
-                  <p className="text-base font-bold text-white italic">
-                    &ldquo;Together, we create extraordinary experiences where elegance meets
-                    imagination.&rdquo;
-                  </p>
-                </blockquote>
-                <div className="pt-2">
-                  <p className="text-[10px] uppercase tracking-widest font-extrabold text-gray-400">
-                    Zendel Creatives
-                  </p>
-                  <p className="text-sm font-bold text-[#09BAF4] italic mt-0.5">
-                    Curating luxury. Celebrating artistry. Creating timeless moments.
-                  </p>
-                </div>
+              </blockquote>
+              <div className="pt-2">
+                <p className="text-[10px] uppercase tracking-widest font-extrabold text-slate-400">
+                  Zendel Creatives
+                </p>
+                <p className="text-sm font-bold text-[#09BAF4] italic mt-0.5">
+                  Curating luxury. Celebrating artistry. Creating timeless moments.
+                </p>
               </div>
             </div>
           </div>
@@ -752,7 +714,7 @@ export default function MediaCreativesPage() {
       </section>
 
       {/* ── FINAL CTA ─────────────────────────────── */}
-      <section className="py-20 bg-gradient-to-r from-[#00A2C9]/5 via-white to-[#6747ee]/5 border-b border-gray-200">
+      <section className="py-20 bg-slate-50 border-b border-gray-200">
         <Container>
           <div className="text-center max-w-2xl mx-auto space-y-6">
             <h2 className="text-3xl sm:text-4xl font-black text-gray-900">
