@@ -452,15 +452,7 @@ export default function MediaCreativesPage() {
                       <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                         {dept.description}
                       </p>
-                      <div>
-                        <Link
-                          href={`/contact?subject=Meet+${encodeURIComponent(dept.category)}+Team`}
-                          className={`inline-flex items-center space-x-2 text-sm font-bold ${dept.accentText} hover:underline underline-offset-4 transition-all group/link`}
-                        >
-                          <span>Meet the {dept.category} Team</span>
-                          <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                        </Link>
-                      </div>
+
                     </div>
                   </div>
                 </div>
