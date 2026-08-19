@@ -93,14 +93,14 @@ export const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+          <div className="hidden xl:flex items-center space-x-1.5 xl:space-x-3">
             {mainNavigationItems.map((item) => {
               const isActive = pathname === item.path;
               return (
                 <Link
                   key={item.path}
                   href={item.path}
-                  className={`px-3.5 py-2 rounded-lg text-xs xl:text-sm font-bold transition-all duration-200 ${
+                  className={`px-3.5 py-2 rounded-lg text-sm xl:text-base font-extrabold transition-all duration-200 ${
                     isActive
                       ? "bg-[#00A2C9]/10 text-[#00A2C9] border border-[#00A2C9]/30"
                       : "text-gray-700 hover:text-[#00A2C9] hover:bg-slate-100"
@@ -113,7 +113,7 @@ export const Header: React.FC = () => {
           </div>
 
           {/* Mobile Toggle */}
-          <div className="flex items-center space-x-3 lg:hidden">
+          <div className="flex items-center space-x-3 xl:hidden">
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -132,7 +132,7 @@ export const Header: React.FC = () => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[112px] bg-white/98 backdrop-blur-xl border-b border-gray-200 z-40 px-4 py-6 shadow-2xl transition-all animate-in slide-in-from-top duration-300">
+        <div className="xl:hidden fixed inset-x-0 top-[112px] bg-white/98 backdrop-blur-xl border-b border-gray-200 z-40 px-4 py-6 shadow-2xl transition-all animate-in slide-in-from-top duration-300">
           <div className="flex flex-col space-y-2">
             {mainNavigationItems.map((item) => {
               const isActive = pathname === item.path;
