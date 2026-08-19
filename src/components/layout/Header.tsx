@@ -92,15 +92,15 @@ export const Header: React.FC = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden xl:flex items-center space-x-1.5 xl:space-x-3">
-            {mainNavigationItems.map((item) => {
+          {/* Desktop Navigation (4 main links + persistent hamburger for the rest) */}
+          <div className="hidden lg:flex items-center space-x-2">
+            {mainNavigationItems.slice(0, 4).map((item) => {
               const isActive = pathname === item.path;
               return (
                 <Link
                   key={item.path}
                   href={item.path}
-                  className={`px-3.5 py-2 rounded-lg text-sm xl:text-base font-extrabold transition-all duration-200 ${
+                  className={`px-3.5 py-2 rounded-lg text-sm font-extrabold transition-all duration-200 ${
                     isActive
                       ? "bg-[#00A2C9]/10 text-[#00A2C9] border border-[#00A2C9]/30"
                       : "text-gray-700 hover:text-[#00A2C9] hover:bg-slate-100"
@@ -110,29 +110,62 @@ export const Header: React.FC = () => {
                 </Link>
               );
             })}
+
+            {/* Persistent Desktop Hamburger Toggle for remaining links */}
+            <div className="relative">
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 rounded-lg text-gray-800 hover:bg-slate-100 focus:outline-none flex items-center justify-center border border-gray-200 ml-2"
+                aria-label="More navigation links"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+
+              {/* Desktop Dropdown for remaining links */}
+              {mobileMenuOpen && (
+                <div className="hidden lg:block absolute right-0 top-12 w-64 bg-white border border-gray-200 rounded-2xl shadow-xl z-50 overflow-hidden divide-y divide-gray-100 animate-in fade-in slide-in-from-top-1 duration-150">
+                  <div className="p-2.5 space-y-1">
+                    <p className="text-[10px] uppercase font-bold text-gray-400 px-3 py-1.5">
+                      More Services &amp; Info
+                    </p>
+                    {mainNavigationItems.slice(4).map((item) => {
+                      const isActive = pathname === item.path;
+                      return (
+                        <Link
+                          key={item.path}
+                          href={item.path}
+                          className={`flex items-center px-4 py-2.5 text-sm font-bold rounded-xl transition-all ${
+                            isActive
+                              ? "bg-[#00A2C9]/10 text-[#00A2C9]"
+                              : "text-gray-700 hover:bg-slate-50"
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Mobile Toggle */}
-          <div className="flex items-center space-x-3 xl:hidden">
-            {/* Mobile Hamburger Toggle */}
+          {/* Mobile Navigation Toggle (Visible on smaller viewports) */}
+          <div className="flex items-center space-x-3 lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-gray-800 hover:bg-slate-100 focus:outline-none"
+              className="p-2 rounded-lg text-gray-800 hover:bg-slate-100 focus:outline-none border border-gray-200"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </Container>
       </nav>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu (Visible on smaller viewports, showing all links) */}
       {mobileMenuOpen && (
-        <div className="xl:hidden fixed inset-x-0 top-[112px] bg-white/98 backdrop-blur-xl border-b border-gray-200 z-40 px-4 py-6 shadow-2xl transition-all animate-in slide-in-from-top duration-300">
+        <div className="lg:hidden fixed inset-x-0 top-[112px] bg-white/98 backdrop-blur-xl border-b border-gray-200 z-40 px-4 py-6 shadow-2xl transition-all animate-in slide-in-from-top duration-300">
           <div className="flex flex-col space-y-2">
             {mainNavigationItems.map((item) => {
               const isActive = pathname === item.path;
