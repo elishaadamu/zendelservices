@@ -33,7 +33,7 @@ export const UpcomingEventSection: React.FC = () => {
                 alt={featuredEvent.title}
                 className="w-full h-auto max-h-[480px] object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute top-4 left-4 bg-gradient-to-r from-[#ff6900] to-[#ff8c00] text-white text-xs font-black px-3.5 py-1.5 rounded-full shadow-lg">
+              <div className="absolute top-4 left-4 bg-[#ff6900] text-white text-xs font-black px-3.5 py-1.5 rounded-full shadow-lg">
                 Upcoming Flagship
               </div>
             </div>

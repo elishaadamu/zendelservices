@@ -148,6 +148,14 @@ export const Header: React.FC = () => {
                 </div>
               )}
             </div>
+
+            {/* Direct CTA Action Button */}
+            <Link
+              href="/events"
+              className="ml-3 px-4 py-2 text-xs font-black uppercase tracking-wider text-white bg-[#00A2C9] hover:bg-[#008ba8] rounded-xl shadow-sm transition-all hover:scale-105"
+            >
+              Plan Event
+            </Link>
           </div>
 
           {/* Mobile Navigation Toggle (Visible on smaller viewports) */}
