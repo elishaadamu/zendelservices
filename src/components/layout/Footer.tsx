@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Phone, Mail, MessageSquare, ChevronUp, ArrowRight } from 'lucide-react';
 import { companyData } from '@/lib/data/company';
 import { footerNavigationItems } from '@/lib/data/navigation';
@@ -21,9 +22,15 @@ const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4'
 );
 
 export const Footer: React.FC = () => {
+  const pathname = usePathname();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   return (
     <footer className="bg-[#0a0504] text-white pt-16 pb-8 border-t border-white/10 relative overflow-hidden">

@@ -24,6 +24,10 @@ export const Header: React.FC = () => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
   return (
     <header className="relative z-50">
       {/* Top Notification Bar */}

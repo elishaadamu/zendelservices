@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "1787136148973",
+    "artisanName": "Creative Vision",
+    "artisanRole": "Lead Event Planner & Creative Director",
+    "name": "Elisha Adamu",
+    "email": "elishadamu97@gmail.com",
+    "phone": "+2347067206984",
+    "eventDate": "2026-08-19",
+    "locationPostcode": "930221",
+    "additionalInfo": "HELLO WORLD. hi",
+    "createdAt": "2026-08-19T10:42:28.973Z"
+  }
+]
